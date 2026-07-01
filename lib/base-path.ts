@@ -3,7 +3,7 @@
  * For a user site (username.github.io) or a custom domain, build with
  * NEXT_PUBLIC_BASE_PATH="" so assets resolve from the root.
  */
-export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/newportfolio";
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/portfolio";
 
 /**
  * Prefix a local ("/"-rooted) asset path with the base path. Absolute URLs
