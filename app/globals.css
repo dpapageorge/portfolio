@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Modern editorial palette — warm paper, ink black, single bold accent */
+    --paper: 44 30% 96%;            /* #F7F4ED warm off-white */
+    --ink: 40 9% 9%;               /* #19170F near-black */
+    --accent: 8 78% 52%;           /* #E33A22 vermilion */
+    --accent-foreground: 44 30% 97%;
+    --muted: 42 14% 90%;
+    --muted-foreground: 40 6% 38%; /* graphite */
+    --line: 40 10% 82%;            /* hairline rule */
+    --marine: 213 38% 32%;         /* #2F4B70 field-guide blue, secondary annotation */
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans;
+    font-feature-settings: "ss01", "cv01", "cv11";
+  }
+
+  ::selection {
+    @apply bg-accent text-accent-foreground;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent ring-offset-2 ring-offset-paper;
+  }
+}
+
+@layer components {
+  /* Field-guide style monospace label */
+  .label-mono {
+    @apply font-mono text-[0.7rem] uppercase tracking-[0.18em] text-muted-foreground;
+  }
+
+  /* Hairline rule used throughout the editorial layout */
+  .rule {
+    @apply border-0 border-t border-line;
+  }
+
+  /* Underline link with editorial flourish */
+  .link-underline {
+    @apply relative inline-block;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1px;
+    transition: background-size 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .link-underline:hover {
+    background-size: 100% 1px;
+  }
+
+  /* Notebook-style dotted grid background */
+  .dot-grid {
+    background-image: radial-gradient(hsl(var(--line)) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  .drop-cap::first-letter {
+    @apply font-serif float-left text-7xl leading-[0.7] pr-3 pt-2 text-accent;
+  }
+}
