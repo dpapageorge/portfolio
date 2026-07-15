@@ -92,8 +92,8 @@ const rawProjects: Project[] = [
     ],
     gallery: [
       {
-        src: "https://images.squarespace-cdn.com/content/v1/5c80ca63815512bdebc4dff2/05eb9c65-cb71-4009-aaa2-99f9081facbe/tool-tip-example.png",
-        caption: "Fare indicator tooltips, surfaced inside the flight result card",
+        src: "/work/switchfly-multiroom-hero.png",
+        caption: "Multi-room hotel selection, comparing rooms, rates, and change policies across travelers",
       },
       {
         src: "https://images.squarespace-cdn.com/content/v1/5c80ca63815512bdebc4dff2/415bdbd0-394b-454b-86da-075ccdb2a5fa/scenarios.png",
