@@ -1,9 +1,9 @@
 /**
- * Base path for GitHub Pages project-site hosting: dpapageorge.github.io/portfolio.
- * For a user site (username.github.io) or a custom domain, build with
- * NEXT_PUBLIC_BASE_PATH="" so assets resolve from the root.
+ * Base path for the site. Empty because it is served from the root of the
+ * custom domain dannypapageorge.com. For a GitHub Pages project subpath
+ * instead, build with NEXT_PUBLIC_BASE_PATH="/portfolio".
  */
-export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "/portfolio";
+export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 /**
  * Prefix a local ("/"-rooted) asset path with the base path. Absolute URLs
