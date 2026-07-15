@@ -82,9 +82,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ─────────────────── Brand strip (credibility) ─────────────────── */}
-      <BrandStrip />
-
       {/* ─────────────────────── Proof by numbers ─────────────────────── */}
       <section className="border-b border-line bg-ink text-paper">
         <div className="container grid grid-cols-2 gap-px md:grid-cols-4">
@@ -102,6 +99,9 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {/* ─────────────────── Brand strip (credibility) ─────────────────── */}
+      <BrandStrip />
 
       {/* ──────────────────────── Selected work ──────────────────────── */}
       <section className="container py-20 md:py-28">
