@@ -96,10 +96,6 @@ const rawProjects: Project[] = [
         caption: "Multi-room hotel selection, comparing rooms, rates, and change policies across travelers",
       },
       {
-        src: "https://images.squarespace-cdn.com/content/v1/5c80ca63815512bdebc4dff2/415bdbd0-394b-454b-86da-075ccdb2a5fa/scenarios.png",
-        caption: "Designing the indicator framework across fare scenarios",
-      },
-      {
         src: "https://images.squarespace-cdn.com/content/v1/5c80ca63815512bdebc4dff2/1400a966-00d6-4079-a8c2-3ba3d5283c10/tooltips.png",
         caption: "The default tooltip system, concise labels and visual tags",
       },
