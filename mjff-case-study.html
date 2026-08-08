@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Michael J. Fox Foundation Case Study | Danny Papageorge</title>
+<meta content="Co-building MichaelJFox.org: UX discovery at scale, a value-exchange strategy for two very different audiences, and the interactions that brought it to life." name="description"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="favicon.ico" rel="alternate icon" sizes="48x48"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --red:#1D4ED8;
+    --blue:#1D4ED8;
+    --yellow:#F2F4F7;
+    --ink:#101828;
+    --cream:#FFFFFF;
+    --paper:#FFFFFF;
+    --body:#475467;
+    --meta:#667085;
+    --line:#E4E7EC;
+    --maxw:1020px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none!important;animation:none!important}
+  }
+  body{
+    font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
+    background:var(--cream);color:var(--ink);
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:10px 16px;z-index:99}
+  .skip:focus{left:12px;top:12px}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+  .plate{
+    display:inline-block;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    border:1.5px solid var(--ink);border-radius:3px;padding:7px 12px;background:var(--paper);
+  }
+  .btn{
+    display:inline-block;font-family:Archivo;font-weight:700;font-size:13px;
+    letter-spacing:.05em;text-transform:uppercase;text-decoration:none;text-align:center;
+    padding:15px 24px;border-radius:4px;border:2px solid var(--ink);cursor:pointer;
+    background:var(--red);color:#fff;box-shadow:0 3px 0 var(--ink);
+    transition:transform .08s ease,box-shadow .08s ease,background .15s ease;
+  }
+  .btn:hover{background:#C93122}
+  .btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--ink)}
+  .btn.alt{background:var(--paper);color:var(--ink)}
+  .btn.alt:hover{background:var(--yellow)}
+  .halftone-band{
+    height:26px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+    background:
+      radial-gradient(circle at 2px 2px,var(--red) 1.2px,transparent 1.5px) 0 0/9px 9px,
+      radial-gradient(circle at 2px 2px,var(--blue) 1px,transparent 1.3px) 4px 5px/11px 11px,
+      var(--cream);
+  }
+  section{padding:64px 0}
+  @media(max-width:720px){section{padding:46px 0}}
+  .js .fade{opacity:0}
+  .js .fade.in{opacity:1;transition:opacity .15s ease}
+
+  /* nav */
+  header.site{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:2px solid var(--ink)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:70px}
+  .brand img{height:26px;width:auto;display:block}
+  nav.links{display:flex;align-items:center;gap:22px}
+  nav.links a{font-weight:600;font-size:15px;text-decoration:none}
+  nav.links a:hover{color:var(--red)}
+  nav.links .btn{padding:11px 18px;font-size:12px}
+  @media(max-width:680px){nav.links a.plain{display:none}}
+
+  /* header */
+  .cs-head{padding:64px 0 46px}
+  .cs-head h1{
+    font-family:Archivo;font-weight:800;font-size:clamp(34px,5.4vw,58px);
+    line-height:1;letter-spacing:-.015em;text-transform:uppercase;margin:22px 0 18px;
+  }
+  .cs-head h1 span{color:var(--blue)}
+  .cs-head .lede{max-width:64ch;font-size:18px;color:var(--body)}
+  .meta-row{
+    margin-top:34px;display:flex;flex-wrap:wrap;gap:8px 28px;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
+    border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:11px 0;
+  }
+  .meta-row b{font-weight:700}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
+  @media(max-width:860px){.stats{grid-template-columns:1fr 1fr}}
+  .st{
+    background:var(--paper);border:2px solid var(--ink);border-radius:6px;
+    box-shadow:0 2px 0 var(--ink);padding:16px 18px;
+  }
+  .st .n{font-family:Archivo;font-weight:800;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.01em;line-height:1}
+  .st .l{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--meta);margin-top:7px}
+
+  /* sections */
+  .sec-head{margin-bottom:30px}
+  .sec-head .kick{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:10px}
+  .sec-head h2{font-family:Archivo;font-weight:800;font-size:clamp(26px,3.8vw,38px);letter-spacing:-.015em;line-height:1.05;text-transform:uppercase}
+  .prose p{font-size:16px;color:var(--body);max-width:66ch;margin-bottom:14px}
+  .prose strong{color:var(--ink)}
+
+  blockquote{
+    margin:26px 0;padding:18px 22px;background:var(--paper);
+    border:2px solid var(--ink);border-left:8px solid var(--yellow);border-radius:6px;
+    box-shadow:0 2px 0 var(--ink);max-width:62ch;
+  }
+  blockquote p{font-size:17px;font-weight:600;font-style:italic;color:var(--ink);margin-bottom:8px}
+  blockquote cite{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.08em;color:var(--meta);font-style:normal;text-transform:uppercase}
+
+  /* figure frames */
+  .frame{
+    background:var(--paper);border:2px solid var(--ink);border-radius:6px;overflow:hidden;
+    box-shadow:0 2px 0 var(--ink);
+  }
+  .frame .bar{
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    background:var(--ink);color:var(--cream);padding:9px 14px;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .frame .bar .no{color:var(--yellow)}
+  .frame figcaption{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--meta);
+    padding:10px 14px;border-top:1.5px solid var(--ink);letter-spacing:.03em;
+  }
+  .frame img{width:100%}
+  .single{margin:26px 0}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;margin-top:26px}
+  @media(max-width:860px){.duo{grid-template-columns:1fr}}
+
+  /* phase blocks */
+  .phase{padding:56px 0;border-top:2px solid var(--ink)}
+  .phase .num{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:12px;letter-spacing:.16em;
+    color:var(--paper);background:var(--ink);display:inline-block;padding:6px 12px;border-radius:100px;margin-bottom:14px;
+  }
+  .phase h3{font-family:Archivo;font-weight:800;font-size:clamp(22px,3.2vw,32px);letter-spacing:-.01em;text-transform:uppercase;margin-bottom:14px}
+  .phase .prose{margin-bottom:24px}
+
+  /* HMW grid */
+  .hmw{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:26px}
+  @media(max-width:860px){.hmw{grid-template-columns:1fr}}
+  .hmw .card{background:var(--paper);border:2px solid var(--ink);border-radius:6px;box-shadow:0 2px 0 var(--ink);padding:16px 18px}
+  .hmw h4{font-family:Archivo;font-weight:800;font-size:14.5px;letter-spacing:0;margin-bottom:10px}
+  .hmw h4 span{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:10px;letter-spacing:.12em;color:var(--red);display:block;margin-bottom:5px;text-transform:uppercase}
+  .hmw ul{list-style:none}
+  .hmw li{font-size:13.5px;font-weight:500;color:var(--body);padding:5px 0 5px 16px;position:relative;border-bottom:1px dotted #B9AE95}
+  .hmw li:last-child{border-bottom:0}
+  .hmw li::before{content:"?";position:absolute;left:0;color:var(--red);font-weight:700;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px}
+
+  /* strategy pillars */
+  .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:26px 0}
+  @media(max-width:860px){.pillars{grid-template-columns:1fr}}
+  .pillar{background:var(--yellow);border:2.5px solid var(--ink);border-radius:6px;padding:4px;box-shadow:0 2px 0 var(--ink)}
+  .pillar .in{border:1.5px solid var(--ink);border-radius:3px;padding:16px;height:100%}
+  .pillar h4{font-family:Archivo;font-weight:800;font-size:15px;text-transform:uppercase;margin-bottom:8px}
+  .pillar p{font-size:13.5px;font-weight:500;color:var(--ink)}
+
+  /* vimeo embeds */
+  .vwrap{position:relative;width:100%;background:#000}
+  .vwrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+  .v-carousel{aspect-ratio:1440/844}
+  .v-desktop{aspect-ratio:1296/1350}
+  .v-mobile{aspect-ratio:320/568}
+  .motion-duo{display:grid;grid-template-columns:1.5fr 1fr;gap:24px;align-items:start;margin-top:26px}
+  @media(max-width:860px){.motion-duo{grid-template-columns:1fr}}
+
+  /* takeaways */
+  .results{background:var(--ink);color:var(--cream)}
+  .results .sec-head h2{color:var(--paper)}
+  .results .sec-head .kick{color:var(--yellow)}
+  .results p{font-size:16px;color:#D8DCE4;max-width:62ch;margin-bottom:14px}
+  .results strong{color:var(--paper)}
+  .results ul{list-style:none;margin-top:8px}
+  .results li{padding:8px 0 8px 24px;position:relative;font-size:15px;color:#D8DCE4;border-bottom:1px solid #3A4450}
+  .results li:last-child{border-bottom:0}
+  .results li::before{content:"★";position:absolute;left:0;color:var(--yellow)}
+
+  /* cta */
+  .cta{text-align:center;padding:80px 0}
+  .cta h2{font-family:Archivo;font-weight:800;font-size:clamp(28px,4.6vw,48px);letter-spacing:-.015em;text-transform:uppercase;margin-bottom:16px}
+  .cta p{font-size:16px;color:var(--body);margin-bottom:28px}
+  .cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  footer.site{background:var(--ink);color:var(--cream);padding:34px 0}
+  footer.site .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#8A93A3;letter-spacing:.04em}
+/* ---------- portfolio refinement ---------- */
+  :root{--accent:#1D4ED8;--line:#E4E7EC;--line-2:#D0D5DD;--surface:#F9FAFB}
+  body{background:#fff}
+  h1,h2,h3,h4{letter-spacing:-.021em}
+  .wordmark{font-weight:800;font-size:17px;letter-spacing:-.021em;color:var(--ink);
+    text-decoration:none;white-space:nowrap;display:inline-block}
+  .halftone-band,.halftone{display:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* nav */
+  header.site{background:rgba(255,255,255,.9);-webkit-backdrop-filter:saturate(180%) blur(10px);
+    backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+  nav.links a{font-weight:500;color:var(--body)}
+  nav.links a:hover{color:var(--ink)}
+  details.menu summary{border:1px solid var(--line-2);border-radius:6px;background:#fff;
+    font-family:inherit;font-weight:600;letter-spacing:.06em}
+  details.menu[open] summary{background:var(--surface)}
+  details.menu .sheet{border:1px solid var(--line);border-radius:10px;
+    box-shadow:0 8px 24px rgba(16,24,40,.08)}
+  details.menu .sheet a{font-weight:500}
+  details.menu .sheet a:hover{background:var(--surface);color:var(--ink)}
+
+  /* buttons + labels */
+  .btn{background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:6px;
+    box-shadow:none;text-transform:none;letter-spacing:0;font-size:14.5px;font-weight:600;padding:12px 22px}
+  .btn:hover{background:#26334A}
+  .btn:active{transform:none;box-shadow:none}
+  .btn.alt{background:#fff;color:var(--ink);border-color:var(--line-2)}
+  .btn.alt:hover{background:var(--surface)}
+  .btn.blue{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.blue:hover{background:#1740B5}
+  .plate{border:1px solid var(--line-2);border-radius:100px;background:#fff;color:var(--meta);
+    font-weight:600;font-size:11px;letter-spacing:.11em;padding:6px 13px}
+  .plate.solid{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* headings */
+  .hero h1,.sec-head h2,.about h2,.accepting h2,.panel h3,.recipes-head h3,.cs-head h1,
+  .update h3,.cta h2,.engage h3,.spec h3,a.recipe h4,.step h3,.side h2,.arrow h3,
+  .side .corner .c1{text-transform:none}
+  .hero h1 .go,.hero h1 .stay{text-shadow:none!important;color:var(--ink)}
+  .sec-head h2{font-size:clamp(28px,3.6vw,40px)}
+
+  /* cards + frames */
+  .mat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+  .spec,.frame,a.recipe,.engage .box,.good,.panel{border:1px solid var(--line)!important;
+    border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+  .spec .bar,.frame .bar,a.recipe .bar{background:var(--surface);color:var(--meta);
+    border-bottom:1px solid var(--line);font-weight:600;font-size:10.5px;letter-spacing:.11em}
+  .spec .bar .no,.frame .bar .no,a.recipe .bar .no{color:var(--meta)}
+  .spec .shot{border-bottom:1px solid var(--line);background:var(--surface)}
+  .frame figcaption{border-top:1px solid var(--line)}
+  .ing{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+  .ing h4{border-bottom:1px solid var(--line);font-weight:600;letter-spacing:.11em}
+  .ing li{border-bottom:1px solid var(--line)}
+  .ing li:last-child{border-bottom:0}
+  a.recipe:hover{transform:none;box-shadow:0 6px 20px rgba(16,24,40,.08)}
+  a.recipe:active{transform:none}
+  a.recipe .go{text-transform:none;font-weight:600;color:var(--accent)}
+  .panel{background:#fff;padding:0}
+  .panel .in{border:0;padding:26px 24px}
+  .panel li{border-bottom:1px solid var(--line);font-weight:500}
+  .panel li:last-child{border-bottom:0}
+  .panel .foot{letter-spacing:.08em;color:var(--meta);opacity:1}
+  .cs-link,.step .n,.sec-head .kick,.kick{color:var(--accent)}
+  .step{border-left:2px solid var(--line)}
+  .facts,.how,.goods{background:#fff}
+  .goods{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .good .g-img{border-bottom:1px solid var(--line)}
+  .engage .box.yellow{background:var(--surface)}
+  .engage .box.blue{background:var(--ink);border-color:var(--ink)!important}
+  .engage .box.blue p{color:#D0D5DD}
+  .meta-row{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    color:var(--meta);letter-spacing:.02em}
+  .meta-row .hl{color:var(--accent)}
+  .work-note,.good .g-meta .k,.spec .cl{letter-spacing:.06em}
+  .about .mat figcaption{letter-spacing:.06em}
+
+  /* case study */
+  .update{border-top:1px solid var(--line)}
+  .results{background:var(--ink)}
+  .stat{background:#fff;color:var(--ink);border:1px solid rgba(255,255,255,.16);
+    box-shadow:none;border-radius:12px}
+  .results li::before{content:"—";color:#98A2B3}
+  .results .sec-head .kick{color:#98A2B3}
+  .cs-head h1 span{color:var(--accent)}
+
+  /* contact */
+  .accepting .email-link{text-decoration-color:var(--line-2);font-weight:600}
+  .accepting .email-link:hover{color:var(--accent);text-decoration-color:var(--accent)}
+  .accepting .no-pitch{letter-spacing:.06em}
+
+  /* footer */
+  footer.site{background:#fff;color:var(--body);border-top:1px solid var(--line)}
+  .foot-brand p,.foot-col h4,.foot-legal,footer.site .wrap{color:var(--meta)}
+  .foot-col a{color:var(--body);font-weight:500}
+  .foot-col a:hover{color:var(--accent)}
+  .foot-legal{border-top:1px solid var(--line)}
+  .foot-brand .wordmark{font-size:18px;margin-bottom:12px}
+
+  /* process boards */
+  body.board-page{background:#fff;color:var(--ink)}
+  .topbar .t{color:var(--meta)}
+  .topbar .t b{color:var(--ink)}
+  .board{background:#fff;border:1px solid var(--line);border-radius:12px}
+  .side.problem{border-right:1px solid var(--line)}
+  .side.payoff{border-left:1px solid var(--line)}
+  .side h2{border-bottom:1px solid var(--line);font-size:16px}
+  .side li{border-bottom:1px solid var(--line)}
+  .side li .ic{border:1px solid var(--line-2);background:#fff;color:var(--meta)}
+  .side.payoff li .ic{background:var(--surface);color:var(--accent)}
+  .side .corner{border-top:1px solid var(--line)}
+  .side.payoff .corner .c1 span,.side.payoff .corner .c1 span+span{color:var(--ink)}
+  .stage{border-right:1px solid var(--line)}
+  .arrow{background:var(--surface);color:var(--ink);border-bottom:1px solid var(--line)}
+  .arrow .num{background:var(--ink);color:#fff}
+  .stage .in{border-top:0}
+  .dl{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+  .dl h4{border-bottom:1px solid var(--line)}
+  .dl li{border-bottom:1px solid var(--line)}
+  .dl li:last-child{border-bottom:0}
+  .dl li::before{color:var(--accent)}
+  .includes{border-top:1px solid var(--line)}
+  .includes.done{color:var(--accent)}
+  .output{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+  .output .v{font-style:normal}
+  .phases .ph{color:var(--meta);border:1px solid var(--line)}
+  .phases .ph.a{color:var(--ink);border-color:var(--line-2)}
+  .phases .ph.b{color:var(--accent);border-color:var(--accent)}
+  .phases .ph.c{color:var(--ink);border-color:var(--line-2)}
+  @media(max-width:1240px){
+    .side.problem{border-bottom:1px solid var(--line)}
+    .side.payoff{border-top:1px solid var(--line)}
+    .stage{border-bottom:1px solid var(--line)}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+<div class="wrap nav">
+<a aria-label="Danny Papageorge, home" class="brand" href="index.html">
+<span class="wordmark">Danny Papageorge</span>
+</a>
+<nav aria-label="Main" class="links">
+<a class="plain" href="index.html#work">← Back to the work</a>
+<a class="btn" href="index.html#start">Get in touch</a>
+</nav>
+</div>
+</header>
+<main id="main">
+<!-- HEADER -->
+<div class="cs-head">
+<div class="wrap">
+<span class="plate">Case study · Website strategy &amp; UX · 2016–2017</span>
+<h1>Michael J. Fox Foundation: <span>Discovery to delivery for a Parkinson's leader.</span></h1>
+<p class="lede">MichaelJFox.org sits at the heart of the Foundation's digital ecosystem: its primary channel to patients, families, researchers, and donors. Working at Mondo Robot, I helped co-build the new site across the full arc of the project, from UX discovery at scale, through the strategy it produced, to the interactions and motion that brought the design to life in production.</p>
+<div class="meta-row">
+<span><b>ROLE:</b> INTERACTION DESIGNER</span>
+<span><b>STUDIO:</b> MONDO ROBOT</span>
+<span><b>SCOPE:</b> RESEARCH · STRATEGY · IA · MOTION</span>
+<span><b>CLIENT:</b> THE MICHAEL J. FOX FOUNDATION</span>
+</div>
+<div class="stats">
+<div class="st fade"><div class="n">269K</div><div class="l">Supporters &amp; researchers surveyed</div></div>
+<div class="st fade"><div class="n">3,800+</div><div class="l">Survey responses synthesized</div></div>
+<div class="st fade"><div class="n">7</div><div class="l">Discovery methods, audit to workshop</div></div>
+<div class="st fade"><div class="n">3</div><div class="l">Strategic areas of opportunity</div></div>
+</div>
+</div>
+</div>
+<div class="halftone-band" role="presentation"></div>
+<!-- THE PROBLEM -->
+<section>
+<div class="wrap">
+<div class="sec-head fade">
+<span class="kick">The problem</span>
+<h2>Good information, hiding in plain sight.</h2>
+</div>
+<div class="prose fade">
+<p>In 2016 the Foundation set out to co-build a website worthy of its role as a visionary funder in the Parkinson's field. The site had to educate patients and families, equip researchers and clinicians, power fundraising, and let in-house teams manage all of it as needs evolved.</p>
+<p>The analytics made the case for change bluntly: <strong>roughly 70% of visitors saw only a single page, and nearly half spent under a minute on the site.</strong> People were arriving, not finding a path, and leaving.</p>
+</div>
+<blockquote class="fade">
+<p>"Generally, I have to click around to get a sense of where information resides. The info is good when I find it, but it isn't as well organized as it could be."</p>
+<cite>Foundation site visitor, discovery survey</cite>
+</blockquote>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>The site</span><span class="no">MichaelJFox.org</span></div>
+<img alt="The redesigned MichaelJFox.org, the heart of the Foundation's digital ecosystem" loading="lazy" src="case-studies/MJFF/MJFF-Featured.webp"/>
+<figcaption>The heart of the Foundation's digital ecosystem.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<!-- PHASE 1 -->
+<div class="phase">
+<div class="wrap">
+<span class="num">PHASE 01</span>
+<h3>Listening at scale</h3>
+<div class="prose fade">
+<p>Discovery was deliberately broad, and it was real research rather than a checkbox. We ran a content audit, a competitive analysis, a comparative analysis of more than 30 organizations, stakeholder interviews, and an analytics review across Google and Adobe. Then we sent a survey to roughly <strong>257,000 patients and supporters and 12,000 researchers and clinicians</strong>, and synthesized more than 3,800 responses.</p>
+<p>The survey did more than gather opinions. It gave the whole project a factual picture of who the audience actually is: <strong>63% patients, 28% family and friends, 6% researchers, clinicians and industry.</strong> Two profoundly different audiences, one front door.</p>
+</div>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>Research</span><span class="no">Audience types</span></div>
+<img alt="Pie chart of survey results: patients 63%, family and friends 28%, researcher, clinician or industry 6%, other 3%" loading="lazy" src="case-studies/MJFF/MJFF-Audience.png"/>
+<figcaption>3,800+ responses distilled into three strong audience types.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- PHASE 2 -->
+<div class="phase">
+<div class="wrap">
+<span class="num">PHASE 02</span>
+<h3>The workshop: walking the real journeys</h3>
+<div class="prose fade">
+<p>With the research synthesized, we met in person for a collaborative workshop. We mapped existing user flows step by step, walked the journeys real people take, and captured How Might We questions for every pain point, then organized and prioritized them as a team. Four journeys anchored the session:</p>
+</div>
+<div class="hmw">
+<div class="card fade">
+<h4><span>Journey 01</span>Patient searching for dystonia treatment</h4>
+<ul>
+<li>HMW personalize the experience by where users live?</li>
+<li>HMW improve on-site search?</li>
+<li>HMW eliminate dead ends?</li>
+</ul>
+</div>
+<div class="card fade">
+<h4><span>Journey 02</span>Family member looking to donate</h4>
+<ul>
+<li>HMW make giving easier across web, mobile, and wallet?</li>
+<li>HMW show the impact a donation will have?</li>
+<li>HMW bring tributes, donations, and Team Fox under one umbrella?</li>
+</ul>
+</div>
+<div class="card fade">
+<h4><span>Journey 03</span>Researcher seeking an animal model</h4>
+<ul>
+<li>HMW reduce the amount of info and clicks?</li>
+<li>HMW better organize the research-tools catalog?</li>
+<li>HMW segment content without excluding anyone?</li>
+</ul>
+</div>
+<div class="card fade">
+<h4><span>Journey 04</span>Patient seeking a new therapy</h4>
+<ul>
+<li>HMW explain the latest trials in layperson's terms?</li>
+<li>HMW convey real momentum in research?</li>
+<li>HMW surface related news on therapy pages?</li>
+</ul>
+</div>
+</div>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>Process</span><span class="no">Collaborative workshop</span></div>
+<img alt="Workshop photos: the team mapping user flows on whiteboards and organizing How Might We sticky notes" loading="lazy" src="case-studies/MJFF/MJFF-UX.png"/>
+<figcaption>Flows on the whiteboard, How Might We notes on the wall, priorities by the end of the day.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- PHASE 3 -->
+<div class="phase">
+<div class="wrap">
+<span class="num">PHASE 03</span>
+<h3>The insight: a value exchange, not a website</h3>
+<div class="prose fade">
+<p>The defining insight from discovery was structural. MichaelJFox.org is the catalyst for a <strong>value exchange between two very different audiences</strong>: patients, family, and friends give funding, action, and data; researchers, clinicians, and industry give back research, results, and credibility. The Foundation sits in the middle, and the website is where the exchange happens.</p>
+<p>That single reframe made the priorities obvious. The site's job isn't to store content; it's to strengthen both sides of the loop: help supporters act, help researchers work, and make each side's contribution visible to the other.</p>
+</div>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>Strategy</span><span class="no">The value exchange</span></div>
+<img alt="Diagram: B2C audiences give funding, action, and data; the Foundation exchanges resources, information, and empowerment; B2B audiences exchange research, results, and credibility" loading="lazy" src="case-studies/MJFF/MJFF-Value-Exchange.png"/>
+<figcaption>The site as catalyst between B2C and B2B audiences.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- PHASE 4 -->
+<div class="phase">
+<div class="wrap">
+<span class="num">PHASE 04</span>
+<h3>Strategy: three areas of opportunity, one vision</h3>
+<div class="prose fade">
+<p>All of the synthesis rolled up into three strategic areas that gave a sprawling content ecosystem a reason to get organized:</p>
+</div>
+<div class="pillars">
+<div class="pillar fade"><div class="in">
+<h4>Content life cycle</h4>
+<p>Architect content intentionally: showcased, explained in plain language, and richly related to other content instead of dead-ending.</p>
+</div></div>
+<div class="pillar fade"><div class="in">
+<h4>Personalized wayfinding</h4>
+<p>Clear information architecture and navigation through a fragmented ecosystem of subdomains, consolidated into one guided experience.</p>
+</div></div>
+<div class="pillar fade"><div class="in">
+<h4>Genuine connection</h4>
+<p>Personalization and a real sense that what people do has impact, so visitors become advocates rather than one-page bounces.</p>
+</div></div>
+</div>
+<div class="prose fade">
+<p>We also mapped the Foundation's six content types and their overlaps, from education to fundraising to empowerment, so the new architecture reflected how the content actually relates rather than how departments are organized.</p>
+</div>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>Strategy</span><span class="no">Content relationships</span></div>
+<img alt="Venn diagram mapping the Foundation's content types: education, empowerment, and fundraising, with social awareness, financial transparency, and Team Fox at the overlaps" loading="lazy" src="case-studies/MJFF/MJFF-Content.png"/>
+<figcaption>Six content types, mapped by relationship instead of department.</figcaption>
+</figure>
+</div>
+<blockquote class="fade">
+<p>"MichaelJFox.org gives audiences a clear, guided journey through their Parkinson's experience, empowering them to make a positive impact on PD research over time."</p>
+<cite>Vision statement, from the discovery</cite>
+</blockquote>
+</div>
+</div>
+<!-- PHASE 5 -->
+<div class="phase">
+<div class="wrap">
+<span class="num">PHASE 05</span>
+<h3>Interactions &amp; motion: subtle, on purpose</h3>
+<div class="prose fade">
+<p>With the strategy set, I focused on the interactions and animations: <strong>intentionally subtle moments designed to reinforce the brand while improving clarity, flow, and usability</strong>. Nothing moves for decoration; motion confirms actions, guides attention, and makes a large site feel responsive rather than busy.</p>
+<p>Each interaction was documented with detailed notes and behavior guidelines, and I worked closely with the front-end engineering team so design intent survived all the way into production. These are captures of that work:</p>
+</div>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>Motion 01</span><span class="no">Get Involved carousel</span></div>
+<div class="vwrap v-carousel">
+<iframe allow="autoplay; fullscreen; picture-in-picture" loading="lazy" src="https://player.vimeo.com/video/323260879?h=a8f8f9ec17&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0" title="Get Involved Carousel - Interaction"></iframe>
+</div>
+<figcaption>Ways to get involved, browsable without leaving the page.</figcaption>
+</figure>
+</div>
+<div class="motion-duo">
+<figure class="frame fade">
+<div class="bar"><span>Motion 02</span><span class="no">Desktop navigation</span></div>
+<div class="vwrap v-desktop">
+<iframe allow="autoplay; fullscreen; picture-in-picture" loading="lazy" src="https://player.vimeo.com/video/323259351?h=7ca76b15b9&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0" title="Desktop Navigation - Interaction"></iframe>
+</div>
+<figcaption>Wayfinding for a vast ecosystem, one calm menu.</figcaption>
+</figure>
+<figure class="frame fade">
+<div class="bar"><span>Motion 03</span><span class="no">Mobile navigation</span></div>
+<div class="vwrap v-mobile">
+<iframe allow="autoplay; fullscreen; picture-in-picture" loading="lazy" src="https://player.vimeo.com/video/323259338?h=52b2ce250b&amp;title=0&amp;byline=0&amp;portrait=0&amp;badge=0&amp;autopause=0" title="Mobile Navigation - Interaction"></iframe>
+</div>
+<figcaption>The same clarity at thumb size.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- TAKEAWAYS -->
+<section class="results">
+<div class="wrap">
+<div class="sec-head fade">
+<span class="kick">What made it work</span>
+<h2>Discovery earned the right to design.</h2>
+</div>
+<div class="fade">
+<p>The most valuable move on this project was <strong>reframing a website redesign as a value-exchange problem between two audiences</strong>. That one lens made priorities obvious, gave every stakeholder a shared compass, and turned a sprawling content ecosystem into a system with a job.</p>
+<ul>
+<li>Broad, honest research made every later decision defensible, from the information architecture down to the motion.</li>
+<li>Four real user journeys, walked step by step, turned abstract pain points into concrete How Might We design questions.</li>
+<li>Documented interaction guidelines kept design intent intact through engineering and into the live site.</li>
+<li>The brand personality that came out of discovery, approachable, optimistic, straightforward, gave the whole team one voice to design toward.</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="cta">
+<div class="wrap fade">
+<h2>Want the longer version?</h2>
+<p>There’s a lot more in the research than fit here — happy to get into it.</p>
+<div class="row">
+<a class="btn" href="index.html#work">More work</a>
+<a class="btn alt" href="index.html#start">Get in touch</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="site">
+<div class="wrap">
+<span>© 2026 DANNY PAPAGEORGE</span>
+<span>PRODUCT DESIGN</span>
+</div>
+</footer>
+<script>
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.08});
+  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

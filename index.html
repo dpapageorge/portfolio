@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Danny Papageorge — Product Designer</title>
+<meta content="Danny Papageorge is an independent product designer with eighteen years of experience across travel, fintech, energy, and nonprofit organizations. Product design, websites, and brand identity." name="description"/>
+<meta content="website" property="og:type"/>
+<meta content="https://dannypapageorge.com/" property="og:url"/>
+<meta content="Danny Papageorge — Product Designer" property="og:title"/>
+<meta content="Danny Papageorge is an independent product designer with eighteen years of experience across travel, fintech, energy, and nonprofit organizations. Product design, websites, and brand identity." property="og:description"/>
+<meta content="https://dannypapageorge.com/images/portrait.jpg" property="og:image"/>
+<meta content="Danny Papageorge, product designer" property="og:image:alt"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="Danny Papageorge — Product Designer" name="twitter:title"/>
+<meta content="Danny Papageorge is an independent product designer with eighteen years of experience across travel, fintech, energy, and nonprofit organizations. Product design, websites, and brand identity." name="twitter:description"/>
+<meta content="https://dannypapageorge.com/images/portrait.jpg" name="twitter:image"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="favicon.ico" rel="alternate icon" sizes="48x48"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --red:#1D4ED8;
+    --blue:#1D4ED8;
+    --yellow:#F2F4F7;
+    --ink:#101828;
+    --cream:#FFFFFF;
+    --paper:#FFFFFF;
+    --body:#475467;
+    --meta:#667085;
+    --line:#E4E7EC;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none!important;animation:none!important}
+  }
+  body{
+    font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
+    background:var(--cream);color:var(--ink);
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:10px 16px;z-index:99}
+  .skip:focus{left:12px;top:12px}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+  /* ---------- components ---------- */
+  .plate{
+    display:inline-block;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    border:1.5px solid var(--ink);border-radius:3px;padding:7px 12px;background:var(--paper);
+  }
+  .plate.solid{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+  .btn{
+    display:inline-block;font-family:Archivo;font-weight:700;font-size:13px;
+    letter-spacing:.05em;text-transform:uppercase;text-decoration:none;text-align:center;
+    padding:15px 24px;border-radius:4px;border:2px solid var(--ink);cursor:pointer;
+    background:var(--red);color:#fff;box-shadow:0 3px 0 var(--ink);
+    transition:transform .08s ease,box-shadow .08s ease,background .15s ease;
+  }
+  .btn:hover{background:#C93122}
+  .btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--ink)}
+  .btn.alt{background:var(--paper);color:var(--ink)}
+  .btn.alt:hover{background:var(--yellow)}
+  .btn.blue{background:var(--blue);color:#fff}
+  .btn.blue:hover{background:#164a94}
+  .halftone-band{
+    height:26px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+    background:
+      radial-gradient(circle at 2px 2px,var(--red) 1.2px,transparent 1.5px) 0 0/9px 9px,
+      radial-gradient(circle at 2px 2px,var(--blue) 1px,transparent 1.3px) 4px 5px/11px 11px,
+      var(--cream);
+  }
+  .mat{
+    background:
+      radial-gradient(circle at 2px 2px,rgba(29,92,184,.28) 1.2px,transparent 1.5px) 0 0/8px 8px,
+      var(--paper);
+    border:2px solid var(--ink);border-radius:6px;padding:18px;
+  }
+  .sec-head{margin-bottom:34px}
+  .sec-head h2{font-family:Archivo;font-weight:800;font-size:clamp(30px,4.4vw,46px);letter-spacing:-.015em;line-height:1;text-transform:uppercase}
+  .sec-head p{margin-top:12px;font-size:16px;color:var(--body);max-width:56ch}
+  section{padding:76px 0}
+  @media(max-width:720px){section{padding:54px 0}}
+  .js .fade{opacity:0}
+  .js .fade.in{opacity:1;transition:opacity .15s ease}
+
+  /* ---------- nav ---------- */
+  header.site{
+    position:sticky;top:0;z-index:50;background:var(--cream);
+    border-bottom:2px solid var(--ink);
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:70px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;min-width:0}
+  .brand img{height:26px;width:auto}
+  nav.links{display:flex;align-items:center;gap:24px}
+  nav.links a{font-weight:600;font-size:15px;text-decoration:none}
+  nav.links a:hover{color:var(--red)}
+  nav.links .btn{padding:11px 18px;font-size:12px}
+  details.menu{display:none;position:relative}
+  details.menu summary{list-style:none;cursor:pointer;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:12px;letter-spacing:.1em;border:2px solid var(--ink);border-radius:4px;padding:9px 13px;background:var(--paper)}
+  details.menu summary::-webkit-details-marker{display:none}
+  details.menu[open] summary{background:var(--yellow)}
+  details.menu .sheet{
+    position:absolute;right:0;top:calc(100% + 8px);background:var(--paper);
+    border:2px solid var(--ink);border-radius:6px;padding:10px;min-width:190px;
+    box-shadow:0 3px 0 var(--ink);display:flex;flex-direction:column;gap:2px;z-index:60
+  }
+  details.menu .sheet a{text-decoration:none;font-weight:600;padding:10px 12px;border-radius:4px}
+  details.menu .sheet a:hover{background:var(--cream);color:var(--red)}
+  @media(max-width:880px){
+    nav.links a.plain{display:none}
+    details.menu{display:block}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{padding:72px 0 60px}
+  .hero-grid{display:grid;grid-template-columns:1.35fr .65fr;gap:44px;align-items:center}
+  @media(max-width:1000px){.hero-grid{grid-template-columns:1fr}.hero-art{display:none}}
+  .hero h1{
+    font-family:Archivo;font-weight:800;font-size:clamp(52px,8.2vw,84px);
+    line-height:.92;letter-spacing:-.015em;text-transform:uppercase;margin:26px 0 22px;
+  }
+  .hero h1 .go{color:var(--red);text-shadow:3px 2px 0 rgba(29,92,184,.45);transition:text-shadow .25s ease}
+  .hero h1 .stay{color:var(--blue);text-shadow:-3px 2px 0 rgba(226,61,46,.4);transition:text-shadow .25s ease}
+  .hero h1:hover .go,.hero h1:hover .stay{text-shadow:0 0 0 transparent}
+  .hero .sub{max-width:52ch;font-size:18px;color:var(--body);margin-bottom:30px}
+  .hero .cta{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:44px}
+  .meta-row{
+    display:flex;flex-wrap:wrap;gap:8px 28px;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;letter-spacing:.02em;
+    border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:11px 0;
+  }
+  .meta-row b{font-weight:700}
+  .hero-art img{border-radius:2px}
+
+  /* ---------- work ---------- */
+  .batches{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  @media(max-width:880px){.batches{grid-template-columns:1fr}}
+  .spec{
+    background:var(--paper);border:2px solid var(--ink);border-radius:6px;overflow:hidden;
+    box-shadow:0 2px 0 var(--ink);display:flex;flex-direction:column;
+  }
+  .spec .bar{
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    background:var(--ink);color:var(--cream);padding:10px 16px;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .spec .bar .no{color:var(--yellow)}
+  .spec .shot{border-bottom:2px solid var(--ink);aspect-ratio:16/10;overflow:hidden;background:#8FA3B8}
+  .spec .shot img{width:100%;height:100%;object-fit:cover}
+  .spec .shot.contain{background:var(--paper);display:flex;align-items:center;justify-content:center;padding:20px}
+  .spec .shot.contain img{width:auto;height:100%;object-fit:contain}
+  .spec .body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:14px;flex:1}
+  .spec h3{font-family:Archivo;font-weight:800;font-size:21px;letter-spacing:-.01em;line-height:1.15}
+  .spec .cl{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--meta);margin-top:4px}
+  .spec .outcome{font-size:15px;color:var(--body)}
+  .cs-link{display:block;margin-top:8px;color:var(--red);font-weight:700;text-decoration:none;white-space:nowrap}
+  .cs-link:hover{text-decoration:underline}
+  .ing{border:1.5px solid var(--ink);border-radius:4px;padding:12px 14px;background:var(--cream);margin-top:auto}
+  .ing h4{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;border-bottom:1.5px solid var(--ink);padding-bottom:8px;margin-bottom:8px}
+  .ing ul{list-style:none;font-size:13.5px;font-weight:600}
+  .ing li{display:flex;justify-content:space-between;gap:12px;padding:4.5px 0;border-bottom:1px dotted #B9AE95}
+  .ing li:last-child{border-bottom:0}
+  .ing li .amt{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:400;font-size:11px;color:var(--meta);white-space:nowrap}
+  .work-note{margin-top:26px;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--meta)}
+
+  /* ---------- capabilities ---------- */
+  .facts{background:var(--cream)}
+  .fact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  @media(max-width:880px){.fact-grid{grid-template-columns:1fr}}
+  .panel{background:var(--yellow);border:2.5px solid var(--ink);border-radius:6px;padding:5px;box-shadow:0 2px 0 var(--ink)}
+  .panel .in{border:1.5px solid var(--ink);border-radius:3px;padding:20px 20px 16px;height:100%;display:flex;flex-direction:column}
+  .panel h3{font-family:Archivo;font-weight:800;font-size:19px;text-transform:uppercase;letter-spacing:.01em}
+  .panel .pitch{font-size:14.5px;font-weight:600;margin:8px 0 14px}
+  .panel ul{list-style:none;font-size:14px;font-weight:600;margin-bottom:14px}
+  .panel li{padding:6px 0;border-bottom:1.5px solid var(--ink)}
+  .panel li:last-child{border-bottom:0}
+  .panel .foot{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9.5px;letter-spacing:.08em;color:var(--ink);opacity:.75;margin-top:auto;text-transform:uppercase}
+
+  /* ---------- directions ---------- */
+  .how{
+    background:
+      radial-gradient(circle at 2px 2px,rgba(226,61,46,.16) 1.2px,transparent 1.5px) 0 0/10px 10px,
+      radial-gradient(circle at 2px 2px,rgba(29,92,184,.14) 1px,transparent 1.3px) 5px 6px/12px 12px,
+      var(--paper);
+  }
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;counter-reset:step}
+  @media(max-width:880px){.steps{grid-template-columns:1fr}}
+  .step{border-left:3px solid var(--red);padding:4px 0 4px 20px}
+  .step .n{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:12px;letter-spacing:.14em;color:var(--red)}
+  .step h3{font-family:Archivo;font-weight:800;font-size:19px;margin:10px 0 8px;letter-spacing:-.01em}
+  .step p{font-size:15px;color:var(--body)}
+  .recipes-head{margin:52px 0 22px}
+  .recipes-head h3{font-family:Archivo;font-weight:800;font-size:clamp(20px,2.6vw,26px);letter-spacing:-.01em;text-transform:uppercase}
+  .recipes-head p{margin-top:8px;font-size:15px;color:var(--body)}
+  .recipes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:880px){.recipes{grid-template-columns:1fr}}
+  a.recipe{
+    display:flex;flex-direction:column;text-decoration:none;
+    background:var(--paper);border:2px solid var(--ink);border-radius:6px;overflow:hidden;
+    box-shadow:0 2px 0 var(--ink);
+    transition:box-shadow .08s ease,transform .08s ease;
+  }
+  a.recipe:hover{transform:translateY(-2px);box-shadow:0 4px 0 var(--ink)}
+  a.recipe:active{transform:translateY(2px);box-shadow:0 0 0 var(--ink)}
+  a.recipe .bar{
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    background:var(--ink);color:var(--cream);padding:9px 14px;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  }
+  a.recipe .bar .no{color:var(--yellow)}
+  a.recipe .r-body{padding:16px 18px 18px;display:flex;flex-direction:column;gap:8px;flex:1}
+  a.recipe h4{font-family:Archivo;font-weight:800;font-size:19px;letter-spacing:-.01em}
+  a.recipe p{font-size:13.5px;color:var(--body);font-weight:500}
+  a.recipe .go{
+    margin-top:auto;padding-top:12px;
+    font-weight:700;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--red);
+  }
+  a.recipe:hover .go{text-decoration:underline}
+  a.recipe .go .ext{vertical-align:-1px;margin-left:2px}
+  .btn .ext{vertical-align:-1px;margin-left:5px}
+  .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .engage{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:44px}
+  @media(max-width:880px){.engage{grid-template-columns:1fr}}
+  .engage .box{background:var(--paper);border:2px solid var(--ink);border-radius:6px;padding:26px;box-shadow:0 2px 0 var(--ink)}
+  .engage .box.blue{background:var(--blue);color:#fff;border-color:var(--ink)}
+  .engage .box.yellow{background:var(--yellow);border-color:var(--ink)}
+  .engage h3{font-family:Archivo;font-weight:800;font-size:22px;margin:10px 0 8px}
+  .engage p,.engage .box>div{font-size:15px}
+  .engage .box.blue p{color:#EAF0FA}
+  .engage p.for{margin-top:12px;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase}
+  .engage p.for a{display:inline-block;margin-top:6px;text-decoration:underline}
+  .engage p.for a:hover{color:var(--red)}
+
+  /* ---------- about ---------- */
+  .about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+  @media(max-width:880px){.about-grid{grid-template-columns:1fr}}
+  .about h2{font-family:Archivo;font-weight:800;font-size:clamp(28px,3.8vw,40px);line-height:1.05;letter-spacing:-.015em;text-transform:uppercase;margin-bottom:20px}
+  .about p{font-size:16.5px;color:var(--body);margin-bottom:16px;max-width:54ch}
+  .about p strong{color:var(--ink)}
+  .about .mat figure img{border-radius:2px}
+  .about .mat figcaption{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;letter-spacing:.08em;color:var(--meta);padding-top:12px;text-transform:uppercase;display:flex;justify-content:space-between}
+
+  /* ---------- goods ---------- */
+  .goods{
+    border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+    background:
+      radial-gradient(circle at 2px 2px,rgba(226,61,46,.16) 1.2px,transparent 1.5px) 0 0/10px 10px,
+      radial-gradient(circle at 2px 2px,rgba(29,92,184,.14) 1px,transparent 1.3px) 5px 6px/12px 12px,
+      var(--paper);
+  }
+  .goods-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+  @media(max-width:880px){.goods-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.goods-grid{grid-template-columns:1fr}}
+  .good{background:var(--paper);border:2px solid var(--ink);border-radius:6px;overflow:hidden;box-shadow:0 2px 0 var(--ink)}
+  .good .g-img{aspect-ratio:1;display:flex;align-items:center;justify-content:center;padding:22px;border-bottom:2px solid var(--ink);background:#fff}
+  .good .g-img img{max-height:100%;object-fit:contain}
+  .good .g-meta{padding:12px 14px}
+  .good .g-meta .t{font-weight:700;font-size:14px}
+  .good .g-meta .k{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.12em;color:var(--meta);text-transform:uppercase;margin-top:3px}
+  .goods .foot{margin-top:30px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+
+  /* ---------- inquiry ---------- */
+  .accepting{text-align:center;padding:64px 0;scroll-margin-top:90px}
+  .accepting h2{font-family:Archivo;font-weight:800;font-size:clamp(34px,5.6vw,62px);letter-spacing:-.015em;line-height:1;text-transform:uppercase;margin:22px auto 18px;max-width:16ch}
+  .accepting p{font-size:17px;color:var(--body);max-width:58ch;margin:0 auto 20px}
+  .accepting .email-link{
+    display:inline-block;margin-top:6px;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;
+    font-size:clamp(22px,3.6vw,30px);color:var(--ink);
+    text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:5px;
+    transition:color .15s ease;
+  }
+  .accepting .email-link:hover{color:var(--red)}
+  .accepting .no-pitch{margin-top:16px;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:var(--meta);letter-spacing:.04em;text-transform:uppercase}
+
+  /* ---------- footer ---------- */
+  footer.site{background:var(--ink);color:var(--cream);padding:54px 0 38px}
+  .foot-grid{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap}
+  .foot-brand{max-width:300px}
+  .foot-brand img{height:24px;margin-bottom:14px}
+  .foot-brand p{font-size:14px;color:#B9C0CB}
+  .foot-col h4{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:#8A93A3;margin-bottom:12px}
+  .foot-col a{display:block;text-decoration:none;font-weight:600;font-size:15px;padding:5px 0}
+  .foot-col a:hover{color:var(--yellow)}
+  .foot-legal{
+    margin-top:42px;padding-top:18px;border-top:1px solid #3A4450;
+    display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#8A93A3;letter-spacing:.04em;
+  }
+/* ---------- portfolio refinement ---------- */
+  :root{--accent:#1D4ED8;--line:#E4E7EC;--line-2:#D0D5DD;--surface:#F9FAFB}
+  body{background:#fff}
+  h1,h2,h3,h4{letter-spacing:-.021em}
+  .wordmark{font-weight:800;font-size:17px;letter-spacing:-.021em;color:var(--ink);
+    text-decoration:none;white-space:nowrap;display:inline-block}
+  .halftone-band,.halftone{display:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* nav */
+  header.site{background:rgba(255,255,255,.9);-webkit-backdrop-filter:saturate(180%) blur(10px);
+    backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+  nav.links a{font-weight:500;color:var(--body)}
+  nav.links a:hover{color:var(--ink)}
+  details.menu summary{border:1px solid var(--line-2);border-radius:6px;background:#fff;
+    font-family:inherit;font-weight:600;letter-spacing:.06em}
+  details.menu[open] summary{background:var(--surface)}
+  details.menu .sheet{border:1px solid var(--line);border-radius:10px;
+    box-shadow:0 8px 24px rgba(16,24,40,.08)}
+  details.menu .sheet a{font-weight:500}
+  details.menu .sheet a:hover{background:var(--surface);color:var(--ink)}
+
+  /* buttons + labels */
+  .btn{background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:6px;
+    box-shadow:none;text-transform:none;letter-spacing:0;font-size:14.5px;font-weight:600;padding:12px 22px}
+  .btn:hover{background:#26334A}
+  .btn:active{transform:none;box-shadow:none}
+  .btn.alt{background:#fff;color:var(--ink);border-color:var(--line-2)}
+  .btn.alt:hover{background:var(--surface)}
+  .btn.blue{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.blue:hover{background:#1740B5}
+  .plate{border:1px solid var(--line-2);border-radius:100px;background:#fff;color:var(--meta);
+    font-weight:600;font-size:11px;letter-spacing:.11em;padding:6px 13px}
+  .plate.solid{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* headings */
+  .hero h1,.sec-head h2,.about h2,.accepting h2,.panel h3,.recipes-head h3,.cs-head h1,
+  .update h3,.cta h2,.engage h3,.spec h3,a.recipe h4,.step h3,.side h2,.arrow h3,
+  .side .corner .c1{text-transform:none}
+  .hero h1 .go,.hero h1 .stay{text-shadow:none!important;color:var(--ink)}
+  .sec-head h2{font-size:clamp(28px,3.6vw,40px)}
+  .hero h1{font-size:clamp(40px,6.2vw,64px);line-height:1.0;margin:22px 0 20px}
+
+  /* cards + frames */
+  .mat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+  .spec,.frame,a.recipe,.engage .box,.good,.panel{border:1px solid var(--line)!important;
+    border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+  .spec .bar,.frame .bar,a.recipe .bar{background:var(--surface);color:var(--meta);
+    border-bottom:1px solid var(--line);font-weight:600;font-size:10.5px;letter-spacing:.11em}
+  .spec .bar .no,.frame .bar .no,a.recipe .bar .no{color:var(--meta)}
+  .spec .shot{border-bottom:1px solid var(--line);background:var(--surface)}
+  .frame figcaption{border-top:1px solid var(--line)}
+  .ing{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+  .ing h4{border-bottom:1px solid var(--line);font-weight:600;letter-spacing:.11em}
+  .ing li{border-bottom:1px solid var(--line)}
+  .ing li:last-child{border-bottom:0}
+  a.recipe:hover{transform:none;box-shadow:0 6px 20px rgba(16,24,40,.08)}
+  a.recipe:active{transform:none}
+  a.recipe .go{text-transform:none;font-weight:600;color:var(--accent)}
+  .panel{background:#fff;padding:0}
+  .panel .in{border:0;padding:26px 24px}
+  .panel li{border-bottom:1px solid var(--line);font-weight:500}
+  .panel .pitch{font-weight:400;color:var(--body);font-size:14.5px;margin:10px 0 18px}
+  .panel li:last-child{border-bottom:0}
+  .panel .foot{letter-spacing:.08em;color:var(--meta);opacity:1}
+  .cs-link,.step .n,.sec-head .kick,.kick{color:var(--accent)}
+  .step{border-left:2px solid var(--line)}
+  .step .n{color:#667085}
+  .facts,.how,.goods{background:#fff}
+  .goods{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .good .g-img{border-bottom:1px solid var(--line)}
+  .engage .box.yellow{background:var(--surface)}
+  .engage .box.blue{background:var(--ink);border-color:var(--ink)!important}
+  .engage .box.blue p{color:#D0D5DD}
+  .meta-row{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    color:var(--meta);letter-spacing:.02em}
+  .meta-row .hl{color:var(--accent)}
+  .work-note,.good .g-meta .k,.spec .cl{letter-spacing:.06em}
+  .about .mat figcaption{letter-spacing:.06em}
+  .about-grid{grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
+  .about-body p{max-width:64ch}
+  .about-body p:last-child{margin-bottom:0}
+  @media(max-width:880px){.about-grid{grid-template-columns:1fr;gap:24px}}
+
+  /* case study */
+  .update{border-top:1px solid var(--line)}
+  .results{background:var(--ink)}
+  .stat{background:#fff;color:var(--ink);border:1px solid rgba(255,255,255,.16);
+    box-shadow:none;border-radius:12px}
+  .results li::before{content:"—";color:#98A2B3}
+  .results .sec-head .kick{color:#98A2B3}
+  .cs-head h1 span{color:var(--accent)}
+
+  /* contact */
+  .accepting .email-link{text-decoration-color:var(--line-2);font-weight:600}
+  .accepting .email-link:hover{color:var(--accent);text-decoration-color:var(--accent)}
+  .accepting .no-pitch{letter-spacing:.06em}
+
+  /* footer */
+  footer.site{background:#fff;color:var(--body);border-top:1px solid var(--line)}
+  .foot-brand p,.foot-col h4,.foot-legal,footer.site .wrap{color:var(--meta)}
+  .foot-col a{color:var(--body);font-weight:500}
+  .foot-col a:hover{color:var(--accent)}
+  .foot-legal{border-top:1px solid var(--line)}
+  .foot-brand .wordmark{font-size:18px;margin-bottom:12px}
+
+  /* process boards */
+  body.board-page{background:#fff;color:var(--ink)}
+  .topbar .t{color:var(--meta)}
+  .topbar .t b{color:var(--ink)}
+  .board{background:#fff;border:1px solid var(--line);border-radius:12px}
+  .side.problem{border-right:1px solid var(--line)}
+  .side.payoff{border-left:1px solid var(--line)}
+  .side h2{border-bottom:1px solid var(--line);font-size:16px}
+  .side li{border-bottom:1px solid var(--line)}
+  .side li .ic{border:1px solid var(--line-2);background:#fff;color:var(--meta)}
+  .side.payoff li .ic{background:var(--surface);color:var(--accent)}
+  .side .corner{border-top:1px solid var(--line)}
+  .side.payoff .corner .c1 span,.side.payoff .corner .c1 span+span{color:var(--ink)}
+  .stage{border-right:1px solid var(--line)}
+  .arrow{background:var(--surface);color:var(--ink);border-bottom:1px solid var(--line)}
+  .arrow .num{background:var(--ink);color:#fff}
+  .stage .in{border-top:0}
+  .dl{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+  .dl h4{border-bottom:1px solid var(--line)}
+  .dl li{border-bottom:1px solid var(--line)}
+  .dl li:last-child{border-bottom:0}
+  .dl li::before{color:var(--accent)}
+  .includes{border-top:1px solid var(--line)}
+  .includes.done{color:var(--accent)}
+  .output{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+  .output .v{font-style:normal}
+  .phases .ph{color:var(--meta);border:1px solid var(--line)}
+  .phases .ph.a{color:var(--ink);border-color:var(--line-2)}
+  .phases .ph.b{color:var(--accent);border-color:var(--accent)}
+  .phases .ph.c{color:var(--ink);border-color:var(--line-2)}
+  @media(max-width:1240px){
+    .side.problem{border-bottom:1px solid var(--line)}
+    .side.payoff{border-top:1px solid var(--line)}
+    .stage{border-bottom:1px solid var(--line)}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+<div class="wrap nav">
+<a aria-label="Danny Papageorge, home" class="brand" href="#">
+<span class="wordmark">Danny Papageorge</span>
+</a>
+<nav aria-label="Main" class="links">
+<a class="plain" href="#work">Work</a>
+<a class="plain" href="#capabilities">Approach</a>
+<a class="plain" href="#about">About</a>
+<a class="plain" href="#start">Contact</a>
+<details class="menu">
+<summary aria-label="Open menu">MENU</summary>
+<div class="sheet">
+<a href="#work">Work</a>
+<a href="#capabilities">Approach</a>
+<a href="#about">About</a>
+<a href="#start">Contact</a>
+</div>
+</details>
+</nav>
+</div>
+</header>
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top">
+<div class="wrap hero-grid">
+<div>
+<span class="plate">Product Designer</span>
+<h1>I help make complex products feel simple.</h1>
+<p class="sub">I’m Danny Papageorge, a product designer with more than a decade of experience. I take products from early discovery and strategy through interaction design, systems, and launch. I partner closely with clients, product owners, and engineers to turn messy problems into clear, useful experiences that meet real user needs and are ready to ship.</p>
+<div class="cta">
+<a class="btn" href="#work">View case studies</a>
+<a class="btn alt" href="#about">About me</a>
+</div>
+<div aria-label="At a glance" class="meta-row">
+<span><b>EXPERIENCE:</b> 13+ YEARS</span>
+<span><b>FOCUS:</b> PRODUCT · WEB · BRAND</span>
+<span><b>RECENTLY:</b> SWITCHFLY</span>
+</div>
+</div>
+<div aria-hidden="false" class="hero-art">
+<div class="mat">
+<figure>
+<img alt="Danny Papageorge, product designer" loading="eager" src="images/headshot.jpg"/>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<div class="halftone-band" role="presentation"></div>
+<!-- WORK -->
+<section id="work">
+<div class="wrap">
+<div class="sec-head fade">
+<h2>Selected work.</h2>
+</div>
+<div class="batches">
+<article class="spec fade">
+<div class="bar"><span>Travel booking UX</span><span class="no">2025</span></div>
+<div class="shot"><img alt="Switchfly multi-room booking interface, three screens of room selection" loading="lazy" src="work/switchfly-multiroom-hero.png"/></div>
+<div class="body">
+<div>
+<h3>Switchfly: Multi-room booking</h3>
+<div class="cl">Switchfly · Travel platform</div>
+</div>
+<p class="outcome">A 24% drop in booking abandonment for multi-room searches. Combining multi-room selection, fare rules, and cancellation policies into one flow travelers can actually finish. <a class="cs-link" href="switchfly-case-study.html">Read the case study →</a></p>
+</div>
+</article>
+<article class="spec fade">
+<div class="bar"><span>Mobile app redesign</span><span class="no">2019</span></div>
+<div class="shot"><img alt="Brew Guru mobile app screens on iOS and Android" loading="lazy" src="work/Bru-Guru-Featured-3.png"/></div>
+<div class="body">
+<div>
+<h3>Brew Guru Redesign</h3>
+<div class="cl">American Homebrewers Association</div>
+</div>
+<p class="outcome">The AHA's mobile app, redesigned and rebuilt in React Native with one PM and one engineer. It ran four more years at a 4.0-star average across 5,760 ratings, retired in 2023 once its features graduated into the AHA's website. <a class="cs-link" href="brew-guru-case-study.html">Read the case study →</a></p>
+</div>
+</article>
+<article class="spec fade">
+<div class="bar"><span>E-commerce platform</span><span class="no">2020</span></div>
+<div class="shot"><img alt="Uplight Marketplace storefront on laptop and phone" loading="lazy" src="case-studies/Uplight/uplight-marketplace-thumb.png"/></div>
+<div class="body">
+<div>
+<h3>Uplight: Marketplace 2.0</h3>
+<div class="cl">Uplight · Energy platform</div>
+</div>
+<p class="outcome">One design system, countless utility brands: Fully-branded white-label marketplaces, from smart thermostats to EV chargers. <a class="cs-link" href="uplight-case-study.html">Read the case study →</a></p>
+</div>
+</article>
+<article class="spec fade">
+<div class="bar"><span>Website strategy &amp; UX</span><span class="no">2017</span></div>
+<div class="shot"><img alt="MichaelJFox.org homepage, the heart of the Foundation's digital ecosystem" loading="lazy" src="work/MJFF-Featured.png"/></div>
+<div class="body">
+<div>
+<h3>Michael J. Fox Foundation</h3>
+<div class="cl">Nonprofit · Healthcare</div>
+</div>
+<p class="outcome">Discovery and strategy for MichaelJFox.org, with Mondo Robot: a survey of 269K supporters distilled into an architecture two very different audiences can use. <a class="cs-link" href="mjff-case-study.html">Read the case study →</a></p>
+</div>
+</article>
+<article class="spec fade">
+<div class="bar"><span>Brand identity</span><span class="no">2020</span></div>
+<div class="shot contain"><img alt="Heady Coffee Co. logo with green steam mark beside the wordmark" loading="lazy" src="work/heady-final.png"/></div>
+<div class="body">
+<div>
+<h3>Heady Coffee Co. Identity</h3>
+<div class="cl">Boulder coffee shop</div>
+</div>
+<p class="outcome">Brand identity for McDevitt Taco Supply's sister company, with a fresh mark that still reads as family. <a class="cs-link" href="heady-case-study.html">Read the case study →</a></p>
+</div>
+</article>
+<article class="spec fade">
+<div class="bar"><span>Apparel graphic</span><span class="no">2016</span></div>
+<div class="shot contain"><img alt="McDevitt Taco Supply badge with halftone mountains and taco mark, Boulder, CO" loading="lazy" src="illustrations/mcdevitt-badge.png"/></div>
+<div class="body">
+<div>
+<h3>McDevitt Taco Supply: Badge tee</h3>
+<div class="cl">Boulder taco outfit</div>
+</div>
+<p class="outcome">A halftone badge tee for Boulder's super heady taco crew.</p>
+</div>
+</article>
+</div>
+<p class="work-note">DIFFERENT INDUSTRIES. DIFFERENT PROBLEMS. THE SAME GOAL: BUILD SOMETHING USEFUL.</p>
+</div>
+</section>
+<div class="halftone-band" role="presentation"></div>
+<!-- CAPABILITIES -->
+<section class="facts" id="capabilities">
+<div class="wrap">
+<div class="sec-head fade">
+<h2>What I bring to a product team.</h2>
+<p>End-to-end product design, with the range to move from an ambiguous problem to a thoughtfully shipped solution.</p>
+</div>
+<div class="fact-grid">
+<div class="panel fade"><div class="in">
+<h3>Product thinking</h3>
+<p class="pitch">I connect customer needs, business goals, and technical constraints to identify the right problem before committing to a solution.</p>
+<ul>
+<li>Discovery and research</li>
+<li>Product strategy</li>
+<li>Journey mapping and flows</li>
+<li>Prioritization and tradeoffs</li>
+</ul>
+</div></div>
+<div class="panel fade"><div class="in">
+<h3>Interaction and systems</h3>
+<p class="pitch">I turn complex requirements into understandable flows, testable prototypes, polished interfaces, and reusable patterns.</p>
+<ul>
+<li>Interaction design</li>
+<li>Rapid prototyping</li>
+<li>Interface design</li>
+<li>Design systems</li>
+<li>Accessibility</li>
+</ul>
+</div></div>
+<div class="panel fade"><div class="in">
+<h3>Cross-functional delivery</h3>
+<p class="pitch">I work closely with product managers and engineers throughout the process so decisions remain grounded and the finished experience holds together.</p>
+<ul>
+<li>Facilitation and alignment</li>
+<li>Design–engineering iteration</li>
+<li>Implementation support</li>
+<li>Launch and refinement</li>
+</ul>
+</div></div>
+</div>
+</div>
+</section>
+<div class="halftone-band" role="presentation"></div>
+<!-- DIRECTIONS FOR USE -->
+<section class="how" id="how">
+<div class="wrap">
+<div class="sec-head fade">
+<h2>How I work.</h2>
+</div>
+<div class="steps">
+<div class="step fade">
+<span class="n">UNDERSTAND</span>
+<h3>Start with the problem</h3>
+<p>I bring customer needs, business goals, and technical constraints into the same conversation. The goal is to understand what matters, what is still uncertain, and what is worth solving first.</p>
+</div>
+<div class="step fade">
+<span class="n">PROTOTYPE</span>
+<h3>Test ideas fast</h3>
+<p>I’d rather put something real in front of people in days than spend weeks on polished mockups. Prototypes make the trade-offs visible while they’re still cheap to change.</p>
+</div>
+<div class="step fade">
+<span class="n">SHIP</span>
+<h3>Stay until launch</h3>
+<p>I stay close to product and engineering through implementation, working through tradeoffs, refining details, and helping the team preserve the intent behind the design.</p>
+</div>
+</div>
+</div>
+</section>
+<div class="halftone-band" role="presentation"></div>
+<!-- ABOUT -->
+<section id="about">
+<div class="wrap about-grid about">
+<div class="about-intro fade">
+<span class="plate solid">About me</span>
+<h2 style="margin-top:18px">I'm curious about the problem, and committed to the outcome.</h2>
+<a class="btn" href="#start" style="margin-top:22px">Get in touch</a>
+</div>
+<div class="about-body fade">
+<p><strong>I’m a product designer who enjoys complex systems, close collaboration, and the journey from a rough problem to a shipped product.</strong></p>
+<p>Over the past decade, I’ve worked across travel, fintech, energy, healthcare, and nonprofit organizations. My experience spans product strategy, user experience, interface design, design systems, and visual identity. This range helps me connect big picture decisions with the details people experience every day.</p>
+<p>I do my best work on teams that value curiosity, direct communication, and shared ownership. I use prototypes, including coded prototypes and those created with AI, to make ideas tangible earlier, encourage useful conversations, and help teams learn before they commit.</p>
+<p>Modern AI tools have changed how I work. They help me prototype faster and explore more directions, which leaves more time for the decisions that actually matter.</p>
+</div>
+</div>
+</section>
+<!-- INQUIRY -->
+<section class="accepting" id="start">
+<div class="wrap fade">
+<span class="plate">Get in touch</span>
+<h2>Let’s talk.</h2>
+<p>I’m open to new roles and projects. If you’re looking for an experienced designer who can move between strategy, interaction, systems, and delivery, I’d be glad to hear what your team is working on.</p>
+<a class="email-link" href="mailto:dannypapageorge@gmail.com?subject=New%20project">dannypapageorge@gmail.com</a>
+<p class="no-pitch">Let’s build something useful.</p>
+</div>
+</section>
+</main>
+<footer class="site">
+<div class="wrap">
+<div class="foot-grid">
+<div class="foot-brand">
+<span class="wordmark">Danny Papageorge</span>
+<p>Product designer focused on complex digital products and the systems behind them.</p>
+</div>
+<div class="foot-col">
+<h4>Site</h4>
+<a href="#work">Work</a>
+<a href="#capabilities">Approach</a>
+<a href="#about">About</a>
+<a href="#start">Contact</a>
+</div>
+<div class="foot-col">
+<h4>Elsewhere</h4>
+<a href="mailto:dannypapageorge@gmail.com">dannypapageorge@gmail.com</a>
+<a href="https://www.linkedin.com/in/danny-papageorge/" rel="noopener" target="_blank">LinkedIn</a>
+</div>
+</div>
+<div class="foot-legal">
+<span>© 2026 DANNY PAPAGEORGE</span>
+<span>DESIGNED AND BUILT BY ME</span>
+</div>
+</div>
+</footer>
+<script>
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.08});
+  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+  // close mobile menu on link tap
+  document.querySelectorAll('details.menu .sheet a').forEach(a=>{
+    a.addEventListener('click',()=>document.querySelector('details.menu').removeAttribute('open'));
+  });
+</script>
+</body>
+</html>

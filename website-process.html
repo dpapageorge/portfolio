@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Website Process | Say It Right, Ship It Live</title>
+<meta content="How a website moves through my studio: positioning, blueprint, design, build, go live. It ends with a working website." name="description"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="favicon.ico" rel="alternate icon" sizes="48x48"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --red:#1D4ED8;
+    --blue:#1D4ED8;
+    --yellow:#F2F4F7;
+    --ink:#101828;
+    --cream:#FFFFFF;
+    --paper:#FFFFFF;
+    --body:#475467;
+    --meta:#667085;
+    --line:#E4E7EC;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+  body{
+    font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
+    background:var(--ink);color:var(--ink);
+    -webkit-font-smoothing:antialiased;line-height:1.45;
+    padding:26px;
+  }
+  .mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+
+  .topbar{
+    max-width:1560px;margin:0 auto 18px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;
+  }
+  .topbar img{height:24px}
+  .topbar .t{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:11px;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--cream);
+  }
+  .topbar .t b{color:var(--yellow)}
+
+  .board{
+    max-width:1560px;margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:0;
+    background:var(--ink);
+    border:3px solid var(--ink);border-radius:10px;overflow:hidden;
+  }
+
+  .side{
+    background:var(--cream);padding:20px 18px 24px;display:flex;flex-direction:column;
+  }
+  .side.problem{border-right:3px solid var(--ink)}
+  .side.payoff{border-left:3px solid var(--ink)}
+  .side h2{
+    font-family:Archivo;font-weight:800;font-size:17px;text-transform:uppercase;
+    border-bottom:3px solid var(--ink);padding-bottom:10px;margin-bottom:16px;
+  }
+  .side ul{list-style:none;display:flex;flex-direction:column;flex:1}
+  .side li{
+    display:flex;align-items:flex-start;gap:10px;
+    font-size:12.5px;font-weight:600;color:var(--body);
+    padding:9px 0;border-bottom:1px dotted #B9AE95;
+  }
+  .side li:last-child{border-bottom:0}
+  .side li .ic{
+    flex:none;width:18px;height:18px;border:1.5px solid var(--ink);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:10px;color:var(--ink);background:var(--paper);
+  }
+  .side.payoff li .ic{background:var(--yellow)}
+  .side .corner{
+    margin-top:18px;padding-top:14px;border-top:3px solid var(--ink);
+    display:flex;align-items:center;gap:10px;
+  }
+  .side .corner img{height:34px;width:34px;object-fit:contain}
+  .side .corner .c1{font-family:Archivo;font-weight:800;font-size:13px;text-transform:uppercase;line-height:1.1}
+  .side .corner .c2{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:9px;letter-spacing:.12em;color:var(--meta);text-transform:uppercase}
+  .side.problem .corner .c1{color:var(--meta)}
+  .side.payoff .corner .c1 span{color:var(--red)}
+  .side.payoff .corner .c1 span+span{color:var(--blue)}
+
+  .stage{background:var(--cream);border-right:1.5px solid var(--ink);display:flex;flex-direction:column}
+  .stage:last-of-type{border-right:0}
+
+  .arrow{
+    position:relative;background:var(--ink);color:var(--cream);
+    padding:13px 10px 13px 20px;
+    display:flex;align-items:center;gap:9px;
+    clip-path:polygon(0 0, calc(100% - 16px) 0, 100% 50%, calc(100% - 16px) 100%, 0 100%);
+  }
+  .stage + .stage .arrow{padding-left:26px}
+  .arrow .num{
+    flex:none;width:22px;height:22px;border-radius:50%;background:var(--yellow);color:var(--ink);
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:12px;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .arrow h3{font-family:Archivo;font-weight:800;font-size:15px;letter-spacing:.03em;text-transform:uppercase;white-space:nowrap}
+
+  .stage .in{padding:16px 16px 18px;display:flex;flex-direction:column;gap:12px;flex:1;border-top:3px solid var(--ink)}
+  .kick{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+  .stage p.lede{font-size:12.5px;font-weight:600;color:var(--ink)}
+  .stage p.note{font-size:12px;color:var(--body)}
+  .dl{border:1.5px solid var(--ink);border-radius:4px;background:var(--paper);padding:10px 12px}
+  .dl h4{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+    border-bottom:1.5px solid var(--ink);padding-bottom:7px;margin-bottom:7px;
+  }
+  .dl ul{list-style:none}
+  .dl li{
+    font-size:12px;font-weight:600;color:var(--body);
+    padding:4px 0 4px 14px;position:relative;border-bottom:1px dotted #B9AE95;
+  }
+  .dl li:last-child{border-bottom:0}
+  .dl li::before{content:"·";position:absolute;left:2px;color:var(--red);font-weight:700}
+  .includes{
+    margin-top:auto;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.06em;color:var(--meta);
+    border-top:1.5px solid var(--ink);padding-top:9px;text-transform:uppercase;
+  }
+  .includes.done{color:var(--red);font-weight:700}
+  .output{
+    background:var(--yellow);border:2px solid var(--ink);border-radius:4px;padding:10px 12px;
+  }
+  .output .k{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:9px;letter-spacing:.16em;text-transform:uppercase;display:block;margin-bottom:4px}
+  .output .v{font-size:12.5px;font-weight:700;font-style:italic;line-height:1.35}
+
+  .phases{
+    max-width:1560px;margin:14px auto 0;
+    display:grid;grid-template-columns:repeat(5,1fr);gap:0;
+  }
+  .phases .ph{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--cream);text-align:center;padding:9px 6px;
+    border:1.5px dashed #5C6470;border-radius:100px;margin:0 8px;
+  }
+  .phases .ph.a{grid-column:1 / span 2;color:var(--yellow);border-color:var(--yellow)}
+  .phases .ph.b{grid-column:3 / span 1;color:var(--red);border-color:var(--red)}
+  .phases .ph.c{grid-column:4 / span 2;color:var(--cream);border-color:var(--cream)}
+
+  .halftone{
+    max-width:1560px;margin:18px auto 0;height:16px;border-radius:100px;
+    background:
+      radial-gradient(circle at 2px 2px,var(--red) 1.2px,transparent 1.5px) 0 0/9px 9px,
+      radial-gradient(circle at 2px 2px,var(--blue) 1px,transparent 1.3px) 4px 5px/11px 11px,
+      var(--cream);
+    border:2px solid var(--cream);
+  }
+
+  @media(max-width:1240px){
+    .board{grid-template-columns:1fr 1fr}
+    .side.problem{grid-column:1 / -1;border-right:0;border-bottom:3px solid var(--ink)}
+    .side.payoff{grid-column:1 / -1;border-left:0;border-top:3px solid var(--ink)}
+    .stage{border-right:1.5px solid var(--ink);border-bottom:1.5px solid var(--ink)}
+    .arrow{clip-path:none}
+    .phases{display:none}
+  }
+  @media(max-width:680px){
+    body{padding:14px}
+    .board{grid-template-columns:1fr}
+    .stage{border-right:0}
+  }
+/* ---------- portfolio refinement ---------- */
+  :root{--accent:#1D4ED8;--line:#E4E7EC;--line-2:#D0D5DD;--surface:#F9FAFB}
+  body{background:#fff}
+  h1,h2,h3,h4{letter-spacing:-.021em}
+  .wordmark{font-weight:800;font-size:17px;letter-spacing:-.021em;color:var(--ink);
+    text-decoration:none;white-space:nowrap;display:inline-block}
+  .halftone-band,.halftone{display:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* nav */
+  header.site{background:rgba(255,255,255,.9);-webkit-backdrop-filter:saturate(180%) blur(10px);
+    backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+  nav.links a{font-weight:500;color:var(--body)}
+  nav.links a:hover{color:var(--ink)}
+  details.menu summary{border:1px solid var(--line-2);border-radius:6px;background:#fff;
+    font-family:inherit;font-weight:600;letter-spacing:.06em}
+  details.menu[open] summary{background:var(--surface)}
+  details.menu .sheet{border:1px solid var(--line);border-radius:10px;
+    box-shadow:0 8px 24px rgba(16,24,40,.08)}
+  details.menu .sheet a{font-weight:500}
+  details.menu .sheet a:hover{background:var(--surface);color:var(--ink)}
+
+  /* buttons + labels */
+  .btn{background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:6px;
+    box-shadow:none;text-transform:none;letter-spacing:0;font-size:14.5px;font-weight:600;padding:12px 22px}
+  .btn:hover{background:#26334A}
+  .btn:active{transform:none;box-shadow:none}
+  .btn.alt{background:#fff;color:var(--ink);border-color:var(--line-2)}
+  .btn.alt:hover{background:var(--surface)}
+  .btn.blue{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.blue:hover{background:#1740B5}
+  .plate{border:1px solid var(--line-2);border-radius:100px;background:#fff;color:var(--meta);
+    font-weight:600;font-size:11px;letter-spacing:.11em;padding:6px 13px}
+  .plate.solid{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* headings */
+  .hero h1,.sec-head h2,.about h2,.accepting h2,.panel h3,.recipes-head h3,.cs-head h1,
+  .update h3,.cta h2,.engage h3,.spec h3,a.recipe h4,.step h3,.side h2,.arrow h3,
+  .side .corner .c1{text-transform:none}
+  .hero h1 .go,.hero h1 .stay{text-shadow:none!important;color:var(--ink)}
+  .sec-head h2{font-size:clamp(28px,3.6vw,40px)}
+
+  /* cards + frames */
+  .mat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+  .spec,.frame,a.recipe,.engage .box,.good,.panel{border:1px solid var(--line)!important;
+    border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+  .spec .bar,.frame .bar,a.recipe .bar{background:var(--surface);color:var(--meta);
+    border-bottom:1px solid var(--line);font-weight:600;font-size:10.5px;letter-spacing:.11em}
+  .spec .bar .no,.frame .bar .no,a.recipe .bar .no{color:var(--meta)}
+  .spec .shot{border-bottom:1px solid var(--line);background:var(--surface)}
+  .frame figcaption{border-top:1px solid var(--line)}
+  .ing{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+  .ing h4{border-bottom:1px solid var(--line);font-weight:600;letter-spacing:.11em}
+  .ing li{border-bottom:1px solid var(--line)}
+  .ing li:last-child{border-bottom:0}
+  a.recipe:hover{transform:none;box-shadow:0 6px 20px rgba(16,24,40,.08)}
+  a.recipe:active{transform:none}
+  a.recipe .go{text-transform:none;font-weight:600;color:var(--accent)}
+  .panel{background:#fff;padding:0}
+  .panel .in{border:0;padding:26px 24px}
+  .panel li{border-bottom:1px solid var(--line);font-weight:500}
+  .panel li:last-child{border-bottom:0}
+  .panel .foot{letter-spacing:.08em;color:var(--meta);opacity:1}
+  .cs-link,.step .n,.sec-head .kick,.kick{color:var(--accent)}
+  .step{border-left:2px solid var(--line)}
+  .facts,.how,.goods{background:#fff}
+  .goods{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .good .g-img{border-bottom:1px solid var(--line)}
+  .engage .box.yellow{background:var(--surface)}
+  .engage .box.blue{background:var(--ink);border-color:var(--ink)!important}
+  .engage .box.blue p{color:#D0D5DD}
+  .meta-row{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    color:var(--meta);letter-spacing:.02em}
+  .meta-row .hl{color:var(--accent)}
+  .work-note,.good .g-meta .k,.spec .cl{letter-spacing:.06em}
+  .about .mat figcaption{letter-spacing:.06em}
+
+  /* case study */
+  .update{border-top:1px solid var(--line)}
+  .results{background:var(--ink)}
+  .stat{background:#fff;color:var(--ink);border:1px solid rgba(255,255,255,.16);
+    box-shadow:none;border-radius:12px}
+  .results li::before{content:"—";color:#98A2B3}
+  .results .sec-head .kick{color:#98A2B3}
+  .cs-head h1 span{color:var(--accent)}
+
+  /* contact */
+  .accepting .email-link{text-decoration-color:var(--line-2);font-weight:600}
+  .accepting .email-link:hover{color:var(--accent);text-decoration-color:var(--accent)}
+  .accepting .no-pitch{letter-spacing:.06em}
+
+  /* footer */
+  footer.site{background:#fff;color:var(--body);border-top:1px solid var(--line)}
+  .foot-brand p,.foot-col h4,.foot-legal,footer.site .wrap{color:var(--meta)}
+  .foot-col a{color:var(--body);font-weight:500}
+  .foot-col a:hover{color:var(--accent)}
+  .foot-legal{border-top:1px solid var(--line)}
+  .foot-brand .wordmark{font-size:18px;margin-bottom:12px}
+
+  /* process boards */
+  body.board-page{background:#fff;color:var(--ink)}
+  .topbar .t{color:var(--meta)}
+  .topbar .t b{color:var(--ink)}
+  .board{background:#fff;border:1px solid var(--line);border-radius:12px}
+  .side.problem{border-right:1px solid var(--line)}
+  .side.payoff{border-left:1px solid var(--line)}
+  .side h2{border-bottom:1px solid var(--line);font-size:16px}
+  .side li{border-bottom:1px solid var(--line)}
+  .side li .ic{border:1px solid var(--line-2);background:#fff;color:var(--meta)}
+  .side.payoff li .ic{background:var(--surface);color:var(--accent)}
+  .side .corner{border-top:1px solid var(--line)}
+  .side.payoff .corner .c1 span,.side.payoff .corner .c1 span+span{color:var(--ink)}
+  .stage{border-right:1px solid var(--line)}
+  .arrow{background:var(--surface);color:var(--ink);border-bottom:1px solid var(--line)}
+  .arrow .num{background:var(--ink);color:#fff}
+  .stage .in{border-top:0}
+  .dl{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+  .dl h4{border-bottom:1px solid var(--line)}
+  .dl li{border-bottom:1px solid var(--line)}
+  .dl li:last-child{border-bottom:0}
+  .dl li::before{color:var(--accent)}
+  .includes{border-top:1px solid var(--line)}
+  .includes.done{color:var(--accent)}
+  .output{background:var(--surface);border:1px solid var(--line);border-radius:8px;margin-top:auto}
+  .output .v{font-style:normal}
+  .phases .ph{color:var(--meta);border:1px solid var(--line)}
+  .phases .ph.a{color:var(--ink);border-color:var(--line-2)}
+  .phases .ph.b{color:var(--accent);border-color:var(--accent)}
+  .phases .ph.c{color:var(--ink);border-color:var(--line-2)}
+  @media(max-width:1240px){
+    .side.problem{border-bottom:1px solid var(--line)}
+    .side.payoff{border-top:1px solid var(--line)}
+    .stage{border-bottom:1px solid var(--line)}
+  }
+</style>
+</head>
+<body class="board-page">
+<div class="topbar">
+<span class="wordmark">Danny Papageorge</span>
+<span class="t">Website spec · <b>Say it right, ship it live</b> · Rev. 01</span>
+</div>
+<div class="board">
+<!-- STAGE 1 -->
+<div class="stage">
+<div class="arrow"><span class="num">1</span><h3>Positioning</h3></div>
+<div class="in">
+<span class="kick">Stage 1 · The message</span>
+<p class="lede">Before layouts: what does this site need to say, and to whom?</p>
+<div class="dl">
+<h4>Deliverables</h4>
+<ul>
+<li>Positioning working session</li>
+<li>Audience &amp; competitor scan</li>
+<li>The one-sentence message</li>
+<li>Page goals &amp; calls to action</li>
+<li>Voice &amp; tone</li>
+</ul>
+</div>
+<div class="output">
+<span class="k">Output</span>
+<span class="v">A message strategy the whole site hangs on.</span>
+</div>
+</div>
+</div>
+<!-- STAGE 2 -->
+<div class="stage">
+<div class="arrow"><span class="num">2</span><h3>Blueprint</h3></div>
+<div class="in">
+<span class="kick">Stage 2 · Structure &amp; words</span>
+<p class="lede">Architecture and content first, so design has something true to work with.</p>
+<div class="dl">
+<h4>Deliverables</h4>
+<ul>
+<li>Sitemap &amp; information architecture</li>
+<li>Content outline, page by page</li>
+<li>Copy direction &amp; headlines</li>
+<li>Wireframes in the browser</li>
+<li>SEO keyword basics</li>
+</ul>
+</div>
+<div class="output">
+<span class="k">Output</span>
+<span class="v">A blueprint: every page, every message, mapped.</span>
+</div>
+</div>
+</div>
+<!-- STAGE 3 -->
+<div class="stage">
+<div class="arrow"><span class="num">3</span><h3>Design</h3></div>
+<div class="in">
+<span class="kick">Stage 3 · Look sharp</span>
+<p class="lede">Visual design as a working prototype in the browser, not a flat mockup.</p>
+<p class="note">You review real pages at real sizes, on your own phone, from day one.</p>
+<div class="dl">
+<h4>Deliverables</h4>
+<ul>
+<li>Visual design &amp; art direction</li>
+<li>Type, color &amp; imagery</li>
+<li>Every breakpoint designed</li>
+<li>Interactions &amp; motion, restrained</li>
+</ul>
+</div>
+<div class="output">
+<span class="k">Output</span>
+<span class="v">The site, designed as a prototype you can click.</span>
+</div>
+</div>
+</div>
+<!-- STAGE 4 -->
+<div class="stage">
+<div class="arrow"><span class="num">4</span><h3>Build</h3></div>
+<div class="in">
+<span class="kick">Stage 4 · A URL, not a mockup</span>
+<p class="lede">The launch-ready build. This is where most website projects stall; this one doesn't.</p>
+<div class="dl">
+<h4>Deliverables</h4>
+<ul>
+<li>Launch-ready build</li>
+<li>Responsive &amp; accessible</li>
+<li>CMS setup your team can edit</li>
+<li>Performance &amp; SEO pass</li>
+<li>Cross-browser QA</li>
+</ul>
+</div>
+<div class="output">
+<span class="k">Output</span>
+<span class="v">A working website, tested and ready to ship.</span>
+</div>
+</div>
+</div>
+<!-- STAGE 5 -->
+<div class="stage">
+<div class="arrow"><span class="num">5</span><h3>Go Live</h3></div>
+<div class="in">
+<span class="kick">Stage 5 · Launch &amp; beyond</span>
+<p class="lede">Flip the switch, watch the numbers, keep it fresh.</p>
+<div class="dl">
+<h4>Deliverables</h4>
+<ul>
+<li>Go-live &amp; domain setup</li>
+<li>Analytics wired up</li>
+<li>Post-launch fixes</li>
+<li>Editing walkthrough for your team</li>
+<li>Ongoing support, if you want it</li>
+</ul>
+</div>
+<div class="output">
+<span class="k">Output</span>
+<span class="v">Live, findable, and easy to keep fresh.</span>
+</div>
+</div>
+</div>
+</div>
+<div class="phases">
+<div class="ph a">Discovery</div>
+<div class="ph b">Design</div>
+<div class="ph c">Build · Launch · Beyond</div>
+</div>
+<div class="halftone" role="presentation"></div>
+</body>
+</html>

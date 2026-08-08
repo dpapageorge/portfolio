@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brew Guru Case Study | Danny Papageorge</title>
+<meta content="Redesigning and rebuilding the American Homebrewers Association's Brew Guru app in React Native: a deals-first refocus that held a 4.0-star average across 5,760 ratings." name="description"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="favicon.ico" rel="alternate icon" sizes="48x48"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --red:#1D4ED8;
+    --blue:#1D4ED8;
+    --yellow:#F2F4F7;
+    --ink:#101828;
+    --cream:#FFFFFF;
+    --paper:#FFFFFF;
+    --body:#475467;
+    --meta:#667085;
+    --line:#E4E7EC;
+    --maxw:1020px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none!important;animation:none!important}
+  }
+  body{
+    font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
+    background:var(--cream);color:var(--ink);
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:10px 16px;z-index:99}
+  .skip:focus{left:12px;top:12px}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+  .plate{
+    display:inline-block;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    border:1.5px solid var(--ink);border-radius:3px;padding:7px 12px;background:var(--paper);
+  }
+  .btn{
+    display:inline-block;font-family:Archivo;font-weight:700;font-size:13px;
+    letter-spacing:.05em;text-transform:uppercase;text-decoration:none;text-align:center;
+    padding:15px 24px;border-radius:4px;border:2px solid var(--ink);cursor:pointer;
+    background:var(--red);color:#fff;box-shadow:0 3px 0 var(--ink);
+    transition:transform .08s ease,box-shadow .08s ease,background .15s ease;
+  }
+  .btn:hover{background:#C93122}
+  .btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--ink)}
+  .btn.alt{background:var(--paper);color:var(--ink)}
+  .btn.alt:hover{background:var(--yellow)}
+  .halftone-band{
+    height:26px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+    background:
+      radial-gradient(circle at 2px 2px,var(--red) 1.2px,transparent 1.5px) 0 0/9px 9px,
+      radial-gradient(circle at 2px 2px,var(--blue) 1px,transparent 1.3px) 4px 5px/11px 11px,
+      var(--cream);
+  }
+  section{padding:64px 0}
+  @media(max-width:720px){section{padding:46px 0}}
+  .js .fade{opacity:0}
+  .js .fade.in{opacity:1;transition:opacity .15s ease}
+
+  /* nav */
+  header.site{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:2px solid var(--ink)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:70px}
+  .brand img{height:26px;width:auto;display:block}
+  nav.links{display:flex;align-items:center;gap:22px}
+  nav.links a{font-weight:600;font-size:15px;text-decoration:none}
+  nav.links a:hover{color:var(--red)}
+  nav.links .btn{padding:11px 18px;font-size:12px}
+  @media(max-width:680px){nav.links a.plain{display:none}}
+
+  /* header */
+  .cs-head{padding:64px 0 46px}
+  .cs-head h1{
+    font-family:Archivo;font-weight:800;font-size:clamp(34px,5.4vw,58px);
+    line-height:1;letter-spacing:-.015em;text-transform:uppercase;margin:22px 0 18px;
+  }
+  .cs-head h1 span{color:var(--blue)}
+  .cs-head .lede{max-width:64ch;font-size:18px;color:var(--body)}
+  .meta-row{
+    margin-top:34px;display:flex;flex-wrap:wrap;gap:8px 28px;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
+    border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:11px 0;
+  }
+  .meta-row b{font-weight:700}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
+  @media(max-width:860px){.stats{grid-template-columns:1fr 1fr}}
+  .st{
+    background:var(--paper);border:2px solid var(--ink);border-radius:6px;
+    box-shadow:0 2px 0 var(--ink);padding:16px 18px;
+  }
+  .st .n{font-family:Archivo;font-weight:800;font-size:clamp(24px,3.4vw,34px);letter-spacing:-.01em;line-height:1}
+  .st .l{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--meta);margin-top:7px}
+
+  /* sections */
+  .sec-head{margin-bottom:30px}
+  .sec-head .kick{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:10px}
+  .sec-head h2{font-family:Archivo;font-weight:800;font-size:clamp(26px,3.8vw,38px);letter-spacing:-.015em;line-height:1.05;text-transform:uppercase}
+  .prose p{font-size:16px;color:var(--body);max-width:66ch;margin-bottom:14px}
+  .prose strong{color:var(--ink)}
+
+  blockquote{
+    margin:26px 0;padding:18px 22px;background:var(--paper);
+    border:2px solid var(--ink);border-left:8px solid var(--yellow);border-radius:6px;
+    box-shadow:0 2px 0 var(--ink);max-width:62ch;
+  }
+  blockquote p{font-size:17px;font-weight:600;font-style:italic;color:var(--ink);margin-bottom:8px}
+  blockquote cite{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;letter-spacing:.08em;color:var(--meta);font-style:normal;text-transform:uppercase}
+
+  /* figure frames */
+  .frame{
+    background:var(--paper);border:2px solid var(--ink);border-radius:6px;overflow:hidden;
+    box-shadow:0 2px 0 var(--ink);
+  }
+  .frame .bar{
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    background:var(--ink);color:var(--cream);padding:9px 14px;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .frame .bar .no{color:var(--yellow)}
+  .frame figcaption{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--meta);
+    padding:10px 14px;border-top:1.5px solid var(--ink);letter-spacing:.03em;
+  }
+  .frame img{width:100%}
+  .single{margin:26px 0}
+  .duo{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;margin-top:26px}
+  @media(max-width:860px){.duo{grid-template-columns:1fr}}
+
+  /* phase blocks */
+  .phase{padding:56px 0;border-top:2px solid var(--ink)}
+  .phase .num{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:12px;letter-spacing:.16em;
+    color:var(--paper);background:var(--ink);display:inline-block;padding:6px 12px;border-radius:100px;margin-bottom:14px;
+  }
+  .phase h3{font-family:Archivo;font-weight:800;font-size:clamp(22px,3.2vw,32px);letter-spacing:-.01em;text-transform:uppercase;margin-bottom:14px}
+  .phase .prose{margin-bottom:24px}
+
+  /* results */
+  .results{background:var(--ink);color:var(--cream)}
+  .results .sec-head h2{color:var(--paper)}
+  .results .sec-head .kick{color:var(--yellow)}
+  .results-grid{display:grid;grid-template-columns:auto 1fr;gap:44px;align-items:center;margin-top:10px}
+  @media(max-width:860px){.results-grid{grid-template-columns:1fr}}
+  .stat-big{
+    background:var(--yellow);color:var(--ink);border:3px solid var(--paper);border-radius:8px;
+    padding:30px 36px;text-align:center;box-shadow:0 4px 0 var(--paper);
+  }
+  .stat-big .n{font-family:Archivo;font-weight:800;font-size:clamp(52px,7vw,76px);line-height:1;letter-spacing:-.02em}
+  .stat-big .l{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-top:8px}
+  .results p{font-size:16px;color:#D8DCE4;max-width:60ch;margin-bottom:14px}
+  .results strong{color:var(--paper)}
+  .results ul{list-style:none;margin-top:8px}
+  .results li{padding:8px 0 8px 24px;position:relative;font-size:15px;color:#D8DCE4;border-bottom:1px solid #3A4450}
+  .results li:last-child{border-bottom:0}
+  .results li::before{content:"★";position:absolute;left:0;color:var(--yellow)}
+
+  /* cta */
+  .cta{text-align:center;padding:80px 0}
+  .cta h2{font-family:Archivo;font-weight:800;font-size:clamp(28px,4.6vw,48px);letter-spacing:-.015em;text-transform:uppercase;margin-bottom:16px}
+  .cta p{font-size:16px;color:var(--body);margin-bottom:28px}
+  .cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  footer.site{background:var(--ink);color:var(--cream);padding:34px 0}
+  footer.site .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#8A93A3;letter-spacing:.04em}
+/* ---------- portfolio refinement ---------- */
+  :root{--accent:#1D4ED8;--line:#E4E7EC;--line-2:#D0D5DD;--surface:#F9FAFB}
+  body{background:#fff}
+  h1,h2,h3,h4{letter-spacing:-.021em}
+  .wordmark{font-weight:800;font-size:17px;letter-spacing:-.021em;color:var(--ink);
+    text-decoration:none;white-space:nowrap;display:inline-block}
+  .halftone-band,.halftone{display:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* nav */
+  header.site{background:rgba(255,255,255,.9);-webkit-backdrop-filter:saturate(180%) blur(10px);
+    backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+  nav.links a{font-weight:500;color:var(--body)}
+  nav.links a:hover{color:var(--ink)}
+  details.menu summary{border:1px solid var(--line-2);border-radius:6px;background:#fff;
+    font-family:inherit;font-weight:600;letter-spacing:.06em}
+  details.menu[open] summary{background:var(--surface)}
+  details.menu .sheet{border:1px solid var(--line);border-radius:10px;
+    box-shadow:0 8px 24px rgba(16,24,40,.08)}
+  details.menu .sheet a{font-weight:500}
+  details.menu .sheet a:hover{background:var(--surface);color:var(--ink)}
+
+  /* buttons + labels */
+  .btn{background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:6px;
+    box-shadow:none;text-transform:none;letter-spacing:0;font-size:14.5px;font-weight:600;padding:12px 22px}
+  .btn:hover{background:#26334A}
+  .btn:active{transform:none;box-shadow:none}
+  .btn.alt{background:#fff;color:var(--ink);border-color:var(--line-2)}
+  .btn.alt:hover{background:var(--surface)}
+  .btn.blue{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.blue:hover{background:#1740B5}
+  .plate{border:1px solid var(--line-2);border-radius:100px;background:#fff;color:var(--meta);
+    font-weight:600;font-size:11px;letter-spacing:.11em;padding:6px 13px}
+  .plate.solid{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* headings */
+  .hero h1,.sec-head h2,.about h2,.accepting h2,.panel h3,.recipes-head h3,.cs-head h1,
+  .update h3,.cta h2,.engage h3,.spec h3,a.recipe h4,.step h3,.side h2,.arrow h3,
+  .side .corner .c1{text-transform:none}
+  .hero h1 .go,.hero h1 .stay{text-shadow:none!important;color:var(--ink)}
+  .sec-head h2{font-size:clamp(28px,3.6vw,40px)}
+
+  /* cards + frames */
+  .mat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+  .spec,.frame,a.recipe,.engage .box,.good,.panel{border:1px solid var(--line)!important;
+    border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+  .spec .bar,.frame .bar,a.recipe .bar{background:var(--surface);color:var(--meta);
+    border-bottom:1px solid var(--line);font-weight:600;font-size:10.5px;letter-spacing:.11em}
+  .spec .bar .no,.frame .bar .no,a.recipe .bar .no{color:var(--meta)}
+  .spec .shot{border-bottom:1px solid var(--line);background:var(--surface)}
+  .frame figcaption{border-top:1px solid var(--line)}
+  .ing{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+  .ing h4{border-bottom:1px solid var(--line);font-weight:600;letter-spacing:.11em}
+  .ing li{border-bottom:1px solid var(--line)}
+  .ing li:last-child{border-bottom:0}
+  a.recipe:hover{transform:none;box-shadow:0 6px 20px rgba(16,24,40,.08)}
+  a.recipe:active{transform:none}
+  a.recipe .go{text-transform:none;font-weight:600;color:var(--accent)}
+  .panel{background:#fff;padding:0}
+  .panel .in{border:0;padding:26px 24px}
+  .panel li{border-bottom:1px solid var(--line);font-weight:500}
+  .panel li:last-child{border-bottom:0}
+  .panel .foot{letter-spacing:.08em;color:var(--meta);opacity:1}
+  .cs-link,.step .n,.sec-head .kick,.kick{color:var(--accent)}
+  .step{border-left:2px solid var(--line)}
+  .facts,.how,.goods{background:#fff}
+  .goods{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .good .g-img{border-bottom:1px solid var(--line)}
+  .engage .box.yellow{background:var(--surface)}
+  .engage .box.blue{background:var(--ink);border-color:var(--ink)!important}
+  .engage .box.blue p{color:#D0D5DD}
+  .meta-row{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    color:var(--meta);letter-spacing:.02em}
+  .meta-row .hl{color:var(--accent)}
+  .work-note,.good .g-meta .k,.spec .cl{letter-spacing:.06em}
+  .about .mat figcaption{letter-spacing:.06em}
+
+  /* case study */
+  .update{border-top:1px solid var(--line)}
+  .results{background:var(--ink)}
+  .stat{background:#fff;color:var(--ink);border:1px solid rgba(255,255,255,.16);
+    box-shadow:none;border-radius:12px}
+  .results li::before{content:"—";color:#98A2B3}
+  .results .sec-head .kick{color:#98A2B3}
+  .cs-head h1 span{color:var(--accent)}
+
+  /* contact */
+  .accepting .email-link{text-decoration-color:var(--line-2);font-weight:600}
+  .accepting .email-link:hover{color:var(--accent);text-decoration-color:var(--accent)}
+  .accepting .no-pitch{letter-spacing:.06em}
+
+  /* footer */
+  footer.site{background:#fff;color:var(--body);border-top:1px solid var(--line)}
+  .foot-brand p,.foot-col h4,.foot-legal,footer.site .wrap{color:var(--meta)}
+  .foot-col a{color:var(--body);font-weight:500}
+  .foot-col a:hover{color:var(--accent)}
+  .foot-legal{border-top:1px solid var(--line)}
+  .foot-brand .wordmark{font-size:18px;margin-bottom:12px}
+
+  /* process boards */
+  body.board-page{background:#fff;color:var(--ink)}
+  .topbar .t{color:var(--meta)}
+  .topbar .t b{color:var(--ink)}
+  .board{background:#fff;border:1px solid var(--line);border-radius:12px}
+  .side.problem{border-right:1px solid var(--line)}
+  .side.payoff{border-left:1px solid var(--line)}
+  .side h2{border-bottom:1px solid var(--line);font-size:16px}
+  .side li{border-bottom:1px solid var(--line)}
+  .side li .ic{border:1px solid var(--line-2);background:#fff;color:var(--meta)}
+  .side.payoff li .ic{background:var(--surface);color:var(--accent)}
+  .side .corner{border-top:1px solid var(--line)}
+  .side.payoff .corner .c1 span,.side.payoff .corner .c1 span+span{color:var(--ink)}
+  .stage{border-right:1px solid var(--line)}
+  .arrow{background:var(--surface);color:var(--ink);border-bottom:1px solid var(--line)}
+  .arrow .num{background:var(--ink);color:#fff}
+  .stage .in{border-top:0}
+  .dl{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+  .dl h4{border-bottom:1px solid var(--line)}
+  .dl li{border-bottom:1px solid var(--line)}
+  .dl li:last-child{border-bottom:0}
+  .dl li::before{color:var(--accent)}
+  .includes{border-top:1px solid var(--line)}
+  .includes.done{color:var(--accent)}
+  .output{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+  .output .v{font-style:normal}
+  .phases .ph{color:var(--meta);border:1px solid var(--line)}
+  .phases .ph.a{color:var(--ink);border-color:var(--line-2)}
+  .phases .ph.b{color:var(--accent);border-color:var(--accent)}
+  .phases .ph.c{color:var(--ink);border-color:var(--line-2)}
+  @media(max-width:1240px){
+    .side.problem{border-bottom:1px solid var(--line)}
+    .side.payoff{border-top:1px solid var(--line)}
+    .stage{border-bottom:1px solid var(--line)}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+<div class="wrap nav">
+<a aria-label="Danny Papageorge, home" class="brand" href="index.html">
+<span class="wordmark">Danny Papageorge</span>
+</a>
+<nav aria-label="Main" class="links">
+<a class="plain" href="index.html#work">← Back to the work</a>
+<a class="btn" href="index.html#start">Get in touch</a>
+</nav>
+</div>
+</header>
+<main id="main">
+<!-- HEADER -->
+<div class="cs-head">
+<div class="wrap">
+<span class="plate">Case study · Mobile app · 2019–2023</span>
+<h1>Brew Guru: <span>A homebrewer's app, refocused.</span></h1>
+<p class="lede">Brew Guru is the American Homebrewers Association's mobile app: member deals, recipes, articles, and a map of every brewery worth a detour. In 2019 I partnered with the client, a product manager, and a single engineer to redesign and rebuild it in React Native, letting research and analytics decide what the app was really for.</p>
+<div class="meta-row">
+<span><b>ROLE:</b> INTERACTION DESIGNER</span>
+<span><b>STUDIO:</b> MONDO ROBOT</span>
+<span><b>CLIENT:</b> AMERICAN HOMEBREWERS ASSN.</span>
+<span><b>BUILT WITH:</b> REACT NATIVE</span>
+</div>
+<div class="stats">
+<div class="st fade"><div class="n">4.0★</div><div class="l">Avg across 5,760 ratings</div></div>
+<div class="st fade"><div class="n">iOS + Android</div><div class="l">One React Native codebase</div></div>
+<div class="st fade"><div class="n">20 → 11</div><div class="l">Text styles consolidated</div></div>
+<div class="st fade"><div class="n">AA</div><div class="l">Colors updated for WCAG</div></div>
+</div>
+</div>
+</div>
+<div class="halftone-band" role="presentation"></div>
+<!-- THE PROBLEM -->
+<section>
+<div class="wrap">
+<div class="sec-head fade">
+<span class="kick">The problem</span>
+<h2>The home screen was doing too much.</h2>
+</div>
+<div class="prose fade">
+<p>User testing showed members found the Home screen overwhelming, but they consistently valued two things: <strong>local deals, and quick access to the membership card they used to redeem them</strong>. Analytics agreed: Deals was already the most-used feature buried inside Home.</p>
+<p>When the data and the interviews both point at deals, you stop defending the home screen and start building the deals screen. We replaced Home with a focused Deals experience: a clearer, more purposeful front door that also set the pattern for how everything else in the app would be organized.</p>
+</div>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>Before / After</span><span class="no">Home becomes Deals</span></div>
+<img alt="Old cluttered Home screen next to the new deals-first design on iOS and Android, showing nearby breweries with member deals" loading="lazy" src="case-studies/Guru/Navigation.webp"/>
+<figcaption>The old Home, and the deals-first entry point that replaced it, on both platforms.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<!-- PHASE 1 -->
+<div class="phase">
+<div class="wrap">
+<span class="num">PART 01</span>
+<h3>Every section earned its place</h3>
+<div class="prose fade">
+<p>With Deals promoted to the front, the rest of the app was reorganized against real usage instead of org charts. <strong>Articles</strong> had low overall engagement, but the analytics showed the people who found it came back often: a small, loyal audience. So instead of cutting it, we raised its visibility to test whether exposure could grow sustained adoption.</p>
+<p><strong>Saved Items</strong> left the primary navigation entirely and moved into the places it was actually used, inside Deals and Recipes, with native platform controls so saving felt familiar on each OS. And <strong>Recipes</strong> gained at-a-glance meta showing how many styles and recipes sat under each beer category, so people could decide where to explore before diving in.</p>
+</div>
+<div class="duo">
+<figure class="frame fade">
+<div class="bar"><span>Recipes</span><span class="no">Saved, where you need it</span></div>
+<img alt="Saved recipes accessible directly inside the Recipes experience using native controls" loading="lazy" src="case-studies/Guru/Recipes.webp"/>
+<figcaption>Saved items live inside the flow, not in a separate tab.</figcaption>
+</figure>
+<figure class="frame fade">
+<div class="bar"><span>Recipes</span><span class="no">Browse with context</span></div>
+<img alt="Beer categories with style and recipe counts displayed beneath each category name" loading="lazy" src="case-studies/Guru/Recipes-2.webp"/>
+<figcaption>Style and recipe counts up front, so exploring starts informed.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- PHASE 2 -->
+<div class="phase">
+<div class="wrap">
+<span class="num">PART 02</span>
+<h3>One location card, reused everywhere</h3>
+<div class="prose fade">
+<p>The most leverage came from a single component. I redesigned the map location card into <strong>one reusable card shared by the map, the list view, and the Deals experience</strong>: location type through iconography, name, distance, and any available member deal, all at a glance.</p>
+<p>Location icons were enlarged and simplified for scannability. Locations without a member deal use the same icon shape in neutral gray, so <strong>color alone signals deal availability</strong> while the system stays visually consistent. Location detail pages got the same treatment: supporting iconography, clearer hierarchy, less to parse.</p>
+</div>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>Map</span><span class="no">The reusable card</span></div>
+<img alt="Map and list views sharing one location card that shows type, name, distance, and member deal" loading="lazy" src="case-studies/Guru/Map.webp"/>
+<figcaption>Same card on the map, in the list, and inside Deals.</figcaption>
+</figure>
+</div>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>App screens</span><span class="no">iOS + Android</span></div>
+<img alt="Four phone screens showing the Brew Guru app: an iOS deals list, an iOS location detail page, an Android map view, and an Android location detail page, all sharing the same reusable location card" loading="lazy" src="case-studies/Guru/App-Screens-iOS-Android.png"/>
+<figcaption>The same location card, the same hierarchy, both platforms.</figcaption>
+</figure>
+</div>
+<div class="duo">
+<figure class="frame fade">
+<div class="bar"><span>Iconography</span><span class="no">Color = deal</span></div>
+<img alt="Enlarged, simplified location icons; gray versions indicate locations without a member deal" loading="lazy" src="case-studies/Guru/Map-Icons.webp"/>
+<figcaption>Bigger, simpler icons; gray means no member deal.</figcaption>
+</figure>
+<figure class="frame fade">
+<div class="bar"><span>Detail</span><span class="no">Location pages</span></div>
+<img alt="Redesigned location detail page with supporting iconography and clearer hierarchy" loading="lazy" src="case-studies/Guru/Location.webp"/>
+<figcaption>Detail pages reorganized around what members actually need.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- PHASE 3 -->
+<div class="phase">
+<div class="wrap">
+<span class="num">PART 03</span>
+<h3>Foundations: accessible color, tighter type</h3>
+<div class="prose fade">
+<p>Underneath the features, the system got stricter. The app's primary orange and green were updated to <strong>pass WCAG AA</strong>. The typography, which had sprawled past twenty styles, was <strong>consolidated to eleven</strong>, with names aligned to iOS and Android platform conventions.</p>
+<p>On a team of four, that shared language was the multiplier: design and engineering called things by the same names, the React Native build went faster, and handoff friction mostly disappeared.</p>
+</div>
+<div class="duo">
+<figure class="frame fade">
+<div class="bar"><span>Color</span><span class="no">WCAG AA</span></div>
+<img alt="The app's primary orange and green updated to pass WCAG AA contrast requirements" loading="lazy" src="case-studies/Guru/Colors.webp"/>
+<figcaption>Primary orange and green, tuned to pass AA.</figcaption>
+</figure>
+<figure class="frame fade">
+<div class="bar"><span>Type</span><span class="no">20+ styles → 11</span></div>
+<img alt="Typography scale consolidated from more than twenty styles to eleven, named to match iOS and Android guidelines" loading="lazy" src="case-studies/Guru/Type-Scale.webp"/>
+<figcaption>One scale, named the way iOS and Android already talk.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- RESULTS -->
+<section class="results">
+<div class="wrap">
+<div class="sec-head fade">
+<span class="kick">Outcomes</span>
+<h2>A focused app people kept rating well.</h2>
+</div>
+<div class="results-grid">
+<div class="stat-big fade">
+<div class="n">4.0★</div>
+<div class="l">5,760 ratings at retirement</div>
+</div>
+<div class="fade">
+<p>The redesign traded a crowded home screen for a clear, deals-first experience backed by a consistent system, and it aged well: <strong>Brew Guru ran for four more years</strong> on the foundation this small team built.</p>
+<p>In 2023 the AHA retired the app, not because it failed, but because <strong>its core features had proven valuable enough to graduate into the Association's mobile-friendly website</strong>, where every member could reach them without an install. That's the good kind of sunset: the product ended, the work carried on.</p>
+<ul>
+<li>Let usage pick the home screen. Leading with Deals wasn't a hunch; it's where research and analytics already agreed.</li>
+<li>On a tiny team, systems are a force multiplier: one reusable card and one type scale did more than any single screen.</li>
+<li>Platform-native patterns from a shared codebase kept both OSes feeling right without doubling the work.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="cta">
+<div class="wrap fade">
+<h2>Want the longer version?</h2>
+<p>Happy to talk through what we cut, what we kept, and how it held up over four years.</p>
+<div class="row">
+<a class="btn" href="index.html#work">More work</a>
+<a class="btn alt" href="index.html#start">Get in touch</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="site">
+<div class="wrap">
+<span>© 2026 DANNY PAPAGEORGE</span>
+<span>PRODUCT DESIGN</span>
+</div>
+</footer>
+<script>
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.08});
+  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

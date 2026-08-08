@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Heady Coffee Co. Case Study | Danny Papageorge</title>
+<meta content="Creating the brand identity and logo for Heady Coffee Co., a Boulder coffee shop and sister company to McDevitt Taco Supply: a fresh mark that still reads as family." name="description"/>
+<link href="favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="favicon.ico" rel="alternate icon" sizes="48x48"/>
+<link href="apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --red:#1D4ED8;
+    --blue:#1D4ED8;
+    --yellow:#F2F4F7;
+    --ink:#101828;
+    --cream:#FFFFFF;
+    --paper:#FFFFFF;
+    --body:#475467;
+    --meta:#667085;
+    --line:#E4E7EC;
+    --maxw:1020px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none!important;animation:none!important}
+  }
+  body{
+    font-family:Archivo,"Helvetica Neue",Arial,sans-serif;
+    background:var(--cream);color:var(--ink);
+    line-height:1.55;-webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  img{max-width:100%;display:block}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+  .mono{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--ink);color:var(--paper);padding:10px 16px;z-index:99}
+  .skip:focus{left:12px;top:12px}
+  :focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+  .plate{
+    display:inline-block;font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    border:1.5px solid var(--ink);border-radius:3px;padding:7px 12px;background:var(--paper);
+  }
+  .btn{
+    display:inline-block;font-family:Archivo;font-weight:700;font-size:13px;
+    letter-spacing:.05em;text-transform:uppercase;text-decoration:none;text-align:center;
+    padding:15px 24px;border-radius:4px;border:2px solid var(--ink);cursor:pointer;
+    background:var(--red);color:#fff;box-shadow:0 3px 0 var(--ink);
+    transition:transform .08s ease,box-shadow .08s ease,background .15s ease;
+  }
+  .btn:hover{background:#C93122}
+  .btn:active{transform:translateY(3px);box-shadow:0 0 0 var(--ink)}
+  .btn.alt{background:var(--paper);color:var(--ink)}
+  .btn.alt:hover{background:var(--yellow)}
+  .halftone-band{
+    height:26px;border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+    background:
+      radial-gradient(circle at 2px 2px,var(--red) 1.2px,transparent 1.5px) 0 0/9px 9px,
+      radial-gradient(circle at 2px 2px,var(--blue) 1px,transparent 1.3px) 4px 5px/11px 11px,
+      var(--cream);
+  }
+  section{padding:64px 0}
+  @media(max-width:720px){section{padding:46px 0}}
+  .js .fade{opacity:0}
+  .js .fade.in{opacity:1;transition:opacity .15s ease}
+
+  /* nav */
+  header.site{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:2px solid var(--ink)}
+  .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;height:70px}
+  .brand img{height:26px;width:auto;display:block}
+  nav.links{display:flex;align-items:center;gap:22px}
+  nav.links a{font-weight:600;font-size:15px;text-decoration:none}
+  nav.links a:hover{color:var(--red)}
+  nav.links .btn{padding:11px 18px;font-size:12px}
+  @media(max-width:680px){nav.links a.plain{display:none}}
+
+  /* header */
+  .cs-head{padding:64px 0 46px}
+  .cs-head h1{
+    font-family:Archivo;font-weight:800;font-size:clamp(34px,5.4vw,58px);
+    line-height:1;letter-spacing:-.015em;text-transform:uppercase;margin:22px 0 18px;
+  }
+  .cs-head h1 span{color:var(--blue)}
+  .cs-head .lede{max-width:64ch;font-size:18px;color:var(--body)}
+  .meta-row{
+    margin-top:34px;display:flex;flex-wrap:wrap;gap:8px 28px;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
+    border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);padding:11px 0;
+  }
+  .meta-row b{font-weight:700}
+
+  /* stats */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:34px}
+  @media(max-width:860px){.stats{grid-template-columns:1fr 1fr}}
+  .st{
+    background:var(--paper);border:2px solid var(--ink);border-radius:6px;
+    box-shadow:0 2px 0 var(--ink);padding:16px 18px;
+  }
+  .st .n{font-family:Archivo;font-weight:800;font-size:clamp(20px,2.8vw,28px);letter-spacing:-.01em;line-height:1}
+  .st .l{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--meta);margin-top:7px}
+
+  /* sections */
+  .sec-head{margin-bottom:30px}
+  .sec-head .kick{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:10px}
+  .sec-head h2{font-family:Archivo;font-weight:800;font-size:clamp(26px,3.8vw,38px);letter-spacing:-.015em;line-height:1.05;text-transform:uppercase}
+  .prose p{font-size:16px;color:var(--body);max-width:66ch;margin-bottom:14px}
+  .prose strong{color:var(--ink)}
+
+  blockquote{
+    margin:26px 0;padding:18px 22px;background:var(--paper);
+    border:2px solid var(--ink);border-left:8px solid var(--yellow);border-radius:6px;
+    box-shadow:0 2px 0 var(--ink);max-width:62ch;
+  }
+  blockquote p{font-size:17px;font-weight:600;font-style:italic;color:var(--ink)}
+
+  /* figure frames */
+  .frame{
+    background:var(--paper);border:2px solid var(--ink);border-radius:6px;overflow:hidden;
+    box-shadow:0 2px 0 var(--ink);
+  }
+  .frame .bar{
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    background:var(--ink);color:var(--cream);padding:9px 14px;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  }
+  .frame .bar .no{color:var(--yellow)}
+  .frame figcaption{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:var(--meta);
+    padding:10px 14px;border-top:1.5px solid var(--ink);letter-spacing:.03em;
+  }
+  .frame img{width:100%}
+  .frame .pad{padding:34px;background:#fff}
+  .single{margin:26px 0}
+
+  /* phase blocks */
+  .phase{padding:56px 0;border-top:2px solid var(--ink)}
+  .phase .num{
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:12px;letter-spacing:.16em;
+    color:var(--paper);background:var(--ink);display:inline-block;padding:6px 12px;border-radius:100px;margin-bottom:14px;
+  }
+  .phase h3{font-family:Archivo;font-weight:800;font-size:clamp(22px,3.2vw,32px);letter-spacing:-.01em;text-transform:uppercase;margin-bottom:14px}
+  .phase .prose{margin-bottom:24px}
+
+  /* DNA cards */
+  .dna{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:26px 0}
+  @media(max-width:860px){.dna{grid-template-columns:1fr}}
+  .gene{background:var(--yellow);border:2.5px solid var(--ink);border-radius:6px;padding:4px;box-shadow:0 2px 0 var(--ink)}
+  .gene .in{border:1.5px solid var(--ink);border-radius:3px;padding:14px 16px;height:100%}
+  .gene h4{font-family:Archivo;font-weight:800;font-size:13.5px;text-transform:uppercase;margin-bottom:6px}
+  .gene p{font-size:13.5px;font-weight:500;color:var(--ink)}
+
+  /* results */
+  .results{background:var(--ink);color:var(--cream)}
+  .results .sec-head h2{color:var(--paper)}
+  .results .sec-head .kick{color:var(--yellow)}
+  .results-grid{display:grid;grid-template-columns:auto 1fr;gap:44px;align-items:center;margin-top:10px}
+  @media(max-width:860px){.results-grid{grid-template-columns:1fr}}
+  .stat-big{
+    background:var(--yellow);color:var(--ink);border:3px solid var(--paper);border-radius:8px;
+    padding:30px 36px;text-align:center;box-shadow:0 4px 0 var(--paper);
+  }
+  .stat-big .n{font-family:Archivo;font-weight:800;font-size:clamp(48px,6.6vw,72px);line-height:1;letter-spacing:-.02em}
+  .stat-big .l{font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;margin-top:8px}
+  .results p{font-size:16px;color:#D8DCE4;max-width:60ch;margin-bottom:14px}
+  .results strong{color:var(--paper)}
+  .results ul{list-style:none;margin-top:8px}
+  .results li{padding:8px 0 8px 24px;position:relative;font-size:15px;color:#D8DCE4;border-bottom:1px solid #3A4450}
+  .results li:last-child{border-bottom:0}
+  .results li::before{content:"★";position:absolute;left:0;color:var(--yellow)}
+
+  /* cta */
+  .cta{text-align:center;padding:80px 0}
+  .cta h2{font-family:Archivo;font-weight:800;font-size:clamp(28px,4.6vw,48px);letter-spacing:-.015em;text-transform:uppercase;margin-bottom:16px}
+  .cta p{font-size:16px;color:var(--body);margin-bottom:28px}
+  .cta .row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+
+  footer.site{background:var(--ink);color:var(--cream);padding:34px 0}
+  footer.site .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;
+    font-family:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;font-size:11px;color:#8A93A3;letter-spacing:.04em}
+/* ---------- portfolio refinement ---------- */
+  :root{--accent:#1D4ED8;--line:#E4E7EC;--line-2:#D0D5DD;--surface:#F9FAFB}
+  body{background:#fff}
+  h1,h2,h3,h4{letter-spacing:-.021em}
+  .wordmark{font-weight:800;font-size:17px;letter-spacing:-.021em;color:var(--ink);
+    text-decoration:none;white-space:nowrap;display:inline-block}
+  .halftone-band,.halftone{display:none}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* nav */
+  header.site{background:rgba(255,255,255,.9);-webkit-backdrop-filter:saturate(180%) blur(10px);
+    backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line)}
+  nav.links a{font-weight:500;color:var(--body)}
+  nav.links a:hover{color:var(--ink)}
+  details.menu summary{border:1px solid var(--line-2);border-radius:6px;background:#fff;
+    font-family:inherit;font-weight:600;letter-spacing:.06em}
+  details.menu[open] summary{background:var(--surface)}
+  details.menu .sheet{border:1px solid var(--line);border-radius:10px;
+    box-shadow:0 8px 24px rgba(16,24,40,.08)}
+  details.menu .sheet a{font-weight:500}
+  details.menu .sheet a:hover{background:var(--surface);color:var(--ink)}
+
+  /* buttons + labels */
+  .btn{background:var(--ink);color:#fff;border:1px solid var(--ink);border-radius:6px;
+    box-shadow:none;text-transform:none;letter-spacing:0;font-size:14.5px;font-weight:600;padding:12px 22px}
+  .btn:hover{background:#26334A}
+  .btn:active{transform:none;box-shadow:none}
+  .btn.alt{background:#fff;color:var(--ink);border-color:var(--line-2)}
+  .btn.alt:hover{background:var(--surface)}
+  .btn.blue{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.blue:hover{background:#1740B5}
+  .plate{border:1px solid var(--line-2);border-radius:100px;background:#fff;color:var(--meta);
+    font-weight:600;font-size:11px;letter-spacing:.11em;padding:6px 13px}
+  .plate.solid{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* headings */
+  .hero h1,.sec-head h2,.about h2,.accepting h2,.panel h3,.recipes-head h3,.cs-head h1,
+  .update h3,.cta h2,.engage h3,.spec h3,a.recipe h4,.step h3,.side h2,.arrow h3,
+  .side .corner .c1{text-transform:none}
+  .hero h1 .go,.hero h1 .stay{text-shadow:none!important;color:var(--ink)}
+  .sec-head h2{font-size:clamp(28px,3.6vw,40px)}
+
+  /* cards + frames */
+  .mat{background:#fff;border:1px solid var(--line);border-radius:14px;padding:10px}
+  .spec,.frame,a.recipe,.engage .box,.good,.panel{border:1px solid var(--line)!important;
+    border-radius:12px;box-shadow:0 1px 2px rgba(16,24,40,.04)}
+  .spec .bar,.frame .bar,a.recipe .bar{background:var(--surface);color:var(--meta);
+    border-bottom:1px solid var(--line);font-weight:600;font-size:10.5px;letter-spacing:.11em}
+  .spec .bar .no,.frame .bar .no,a.recipe .bar .no{color:var(--meta)}
+  .spec .shot{border-bottom:1px solid var(--line);background:var(--surface)}
+  .frame figcaption{border-top:1px solid var(--line)}
+  .ing{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+  .ing h4{border-bottom:1px solid var(--line);font-weight:600;letter-spacing:.11em}
+  .ing li{border-bottom:1px solid var(--line)}
+  .ing li:last-child{border-bottom:0}
+  a.recipe:hover{transform:none;box-shadow:0 6px 20px rgba(16,24,40,.08)}
+  a.recipe:active{transform:none}
+  a.recipe .go{text-transform:none;font-weight:600;color:var(--accent)}
+  .panel{background:#fff;padding:0}
+  .panel .in{border:0;padding:26px 24px}
+  .panel li{border-bottom:1px solid var(--line);font-weight:500}
+  .panel li:last-child{border-bottom:0}
+  .panel .foot{letter-spacing:.08em;color:var(--meta);opacity:1}
+  .cs-link,.step .n,.sec-head .kick,.kick{color:var(--accent)}
+  .step{border-left:2px solid var(--line)}
+  .facts,.how,.goods{background:#fff}
+  .goods{border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .good .g-img{border-bottom:1px solid var(--line)}
+  .engage .box.yellow{background:var(--surface)}
+  .engage .box.blue{background:var(--ink);border-color:var(--ink)!important}
+  .engage .box.blue p{color:#D0D5DD}
+  .meta-row{border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    color:var(--meta);letter-spacing:.02em}
+  .meta-row .hl{color:var(--accent)}
+  .work-note,.good .g-meta .k,.spec .cl{letter-spacing:.06em}
+  .about .mat figcaption{letter-spacing:.06em}
+
+  /* case study */
+  .update{border-top:1px solid var(--line)}
+  .results{background:var(--ink)}
+  .stat{background:#fff;color:var(--ink);border:1px solid rgba(255,255,255,.16);
+    box-shadow:none;border-radius:12px}
+  .results li::before{content:"—";color:#98A2B3}
+  .results .sec-head .kick{color:#98A2B3}
+  .cs-head h1 span{color:var(--accent)}
+
+  /* contact */
+  .accepting .email-link{text-decoration-color:var(--line-2);font-weight:600}
+  .accepting .email-link:hover{color:var(--accent);text-decoration-color:var(--accent)}
+  .accepting .no-pitch{letter-spacing:.06em}
+
+  /* footer */
+  footer.site{background:#fff;color:var(--body);border-top:1px solid var(--line)}
+  .foot-brand p,.foot-col h4,.foot-legal,footer.site .wrap{color:var(--meta)}
+  .foot-col a{color:var(--body);font-weight:500}
+  .foot-col a:hover{color:var(--accent)}
+  .foot-legal{border-top:1px solid var(--line)}
+  .foot-brand .wordmark{font-size:18px;margin-bottom:12px}
+
+  /* process boards */
+  body.board-page{background:#fff;color:var(--ink)}
+  .topbar .t{color:var(--meta)}
+  .topbar .t b{color:var(--ink)}
+  .board{background:#fff;border:1px solid var(--line);border-radius:12px}
+  .side.problem{border-right:1px solid var(--line)}
+  .side.payoff{border-left:1px solid var(--line)}
+  .side h2{border-bottom:1px solid var(--line);font-size:16px}
+  .side li{border-bottom:1px solid var(--line)}
+  .side li .ic{border:1px solid var(--line-2);background:#fff;color:var(--meta)}
+  .side.payoff li .ic{background:var(--surface);color:var(--accent)}
+  .side .corner{border-top:1px solid var(--line)}
+  .side.payoff .corner .c1 span,.side.payoff .corner .c1 span+span{color:var(--ink)}
+  .stage{border-right:1px solid var(--line)}
+  .arrow{background:var(--surface);color:var(--ink);border-bottom:1px solid var(--line)}
+  .arrow .num{background:var(--ink);color:#fff}
+  .stage .in{border-top:0}
+  .dl{border:1px solid var(--line);border-radius:8px;background:var(--surface)}
+  .dl h4{border-bottom:1px solid var(--line)}
+  .dl li{border-bottom:1px solid var(--line)}
+  .dl li:last-child{border-bottom:0}
+  .dl li::before{color:var(--accent)}
+  .includes{border-top:1px solid var(--line)}
+  .includes.done{color:var(--accent)}
+  .output{background:var(--surface);border:1px solid var(--line);border-radius:8px}
+  .output .v{font-style:normal}
+  .phases .ph{color:var(--meta);border:1px solid var(--line)}
+  .phases .ph.a{color:var(--ink);border-color:var(--line-2)}
+  .phases .ph.b{color:var(--accent);border-color:var(--accent)}
+  .phases .ph.c{color:var(--ink);border-color:var(--line-2)}
+  @media(max-width:1240px){
+    .side.problem{border-bottom:1px solid var(--line)}
+    .side.payoff{border-top:1px solid var(--line)}
+    .stage{border-bottom:1px solid var(--line)}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+<div class="wrap nav">
+<a aria-label="Danny Papageorge, home" class="brand" href="index.html">
+<span class="wordmark">Danny Papageorge</span>
+</a>
+<nav aria-label="Main" class="links">
+<a class="plain" href="index.html#work">← Back to the work</a>
+<a class="btn" href="index.html#start">Get in touch</a>
+</nav>
+</div>
+</header>
+<main id="main">
+<!-- HEADER -->
+<div class="cs-head">
+<div class="wrap">
+<span class="plate">Case study · Brand identity · 2020</span>
+<h1>Heady Coffee Co.: <span>A sibling, not a clone.</span></h1>
+<p class="lede">Heady Coffee Co. is a Boulder coffee shop and the sister company to McDevitt Taco Supply. That relationship was the whole brief: build Heady an identity that stands alone as a coffee brand, while anyone who knows the taco joint feels the family resemblance instantly. Less a blank-page logo, more a family portrait.</p>
+<div class="meta-row">
+<span><b>ROLE:</b> BRAND &amp; LOGO DESIGNER</span>
+<span><b>CLIENT:</b> HEADY COFFEE CO.</span>
+<span><b>SISTER BRAND:</b> MCDEVITT TACO SUPPLY</span>
+<span><b>LOCATION:</b> BOULDER, CO</span>
+</div>
+<div class="stats">
+<div class="st fade"><div class="n">Steam mark</div><div class="l">One icon, instantly coffee</div></div>
+<div class="st fade"><div class="n">Green + black</div><div class="l">Shared family palette</div></div>
+<div class="st fade"><div class="n">3 lockups</div><div class="l">Badge, circle, and boxed</div></div>
+<div class="st fade"><div class="n">2 typefaces</div><div class="l">Tested; Avenir won</div></div>
+</div>
+</div>
+</div>
+<div class="halftone-band" role="presentation"></div>
+<!-- THE BRIEF -->
+<section>
+<div class="wrap">
+<div class="sec-head fade">
+<span class="kick">The brief</span>
+<h2>A new coffee brand, born into a family.</h2>
+</div>
+<div class="prose fade">
+<p>Heady needed its own identity: clearly a coffee brand, not a taco joint. But a customer who knew one had to feel the other in it right away. So the job was to <strong>design a sibling</strong>: find the shared features that make the two unmistakably related, then give Heady a personality of its own.</p>
+<p>There was even a verbal thread to pull on. McDevitt's own menu sells <strong>"super heady tacos,"</strong> so the name Heady Coffee Co. lets the two brands rhyme out loud, not just on the page.</p>
+</div>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>The mark</span><span class="no">Final lockup</span></div>
+<div class="pad"><img alt="The final Heady Coffee Co. logo: a steam mark in a green block, boxed beside the wordmark" loading="lazy" src="case-studies/heady/heady-final.png"/></div>
+<figcaption>The final boxed lockup: steam mark in the family green, wordmark alongside.</figcaption>
+</figure>
+</div>
+</div>
+</section>
+<!-- PART 1 -->
+<div class="phase">
+<div class="wrap">
+<span class="num">PART 01</span>
+<h3>The shared DNA</h3>
+<div class="prose fade">
+<p>Step one was naming what makes McDevitt look like McDevitt. It came down to three genes, and Heady would inherit all of them. With the backbone settled, the only real question left was the symbol, and how to house it.</p>
+</div>
+<div class="dna">
+<div class="gene fade"><div class="in">
+<h4>Electric green</h4>
+<p>The bright, almost electric green that makes both brands impossible to miss on a Boulder street.</p>
+</div></div>
+<div class="gene fade"><div class="in">
+<h4>Heavy black outline</h4>
+<p>A confident, consistent line weight that gives every mark the same sturdy, printed feel.</p>
+</div></div>
+<div class="gene fade"><div class="in">
+<h4>Icon in a block</h4>
+<p>One symbol living inside a strong container, the way McDevitt's taco sits in its chat-bubble block.</p>
+</div></div>
+</div>
+<blockquote class="fade">
+<p>"Designing a sister brand is about resemblance, not repetition. Keep the bones, change the face."</p>
+</blockquote>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>Family portrait</span><span class="no">Heady × McDevitt</span></div>
+<div class="pad"><img alt="The Heady steam mark beside the McDevitt Taco Supply mark, sharing one green-block, black-outline, icon-in-a-block system" loading="lazy" src="case-studies/heady/heady-coffee-sister-figure.png"/></div>
+<figcaption>A taco in a green block, a steam mark in a green block. Same family, different appetite.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- PART 2 -->
+<div class="phase">
+<div class="wrap">
+<span class="num">PART 02</span>
+<h3>From coffee cups to a third eye</h3>
+<div class="prose fade">
+<p>I ran the symbol wide before narrowing: a literal cup of coffee; a to-go box with a leaf for something roastery and earthy; a hexagon for a badge-like, technical feel; even a calm <strong>third-eye face</strong> leaning into the double meaning of a heady aroma and a heady buzz.</p>
+<p>The literal options were safe but forgettable. The punny ones were fun but pulled too far from the taco sibling. The winner was <strong>the quietest idea in the set</strong>: three rising waves of steam, the universal shorthand for a hot, fresh cup. It says coffee instantly, it nods to the word heady, the rising head off a fresh pour, and boxed in green it ties straight back to McDevitt.</p>
+</div>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>Exploration</span><span class="no">Six directions</span></div>
+<div class="pad"><img alt="Concept explorations: coffee cup, third-eye triangle, cube with leaf, hexagon badge, and boxed steam lockups" loading="lazy" src="case-studies/heady/heady-explorations-wide.png"/></div>
+<figcaption>Cup, third eye, roast box, hexagon: the steam mark beat them all by saying the most with the least.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- PART 3 -->
+<div class="phase">
+<div class="wrap">
+<span class="num">PART 03</span>
+<h3>Choosing the corners and the voice</h3>
+<div class="prose fade">
+<p>Two typographic directions went head to head across the full lockup set. <strong>Gotham Rounded with rounded corners</strong> read softer and friendlier; <strong>Avenir with sharp corners</strong> felt cleaner and more grown-up, closer in posture to the McDevitt mark. Heady chose sharp: approachable, but composed.</p>
+<p>From there the system built out: the icon as a standalone badge, a circle treatment, and the boxed lockup where the green block and wordmark share one outlined bar. Every variant holds the same green and the same line weight, so the brand stays recognizable at any size, on a cup, a window, a sign, or an app icon.</p>
+</div>
+<div class="single">
+<figure class="frame fade">
+<div class="bar"><span>Type test</span><span class="no">Gotham Rounded vs Avenir</span></div>
+<div class="pad"><img alt="Two type directions tested across badge, circle, and boxed lockups: Gotham Rounded with rounded corners versus Avenir with sharp corners" loading="lazy" src="case-studies/heady/heady-fonts.png"/></div>
+<figcaption>The full lockup set, tested both ways. Sharp corners and Avenir won.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<!-- RESULTS -->
+<section class="results">
+<div class="wrap">
+<div class="sec-head fade">
+<span class="kick">Why it works</span>
+<h2>The connection is felt, not spelled out.</h2>
+</div>
+<div class="results-grid">
+<div class="stat-big fade">
+<div class="n">×2</div>
+<div class="l">Brands, one family system</div>
+</div>
+<div class="fade">
+<p>Set the two marks side by side and the relationship is obvious <strong>without a word of explanation</strong>. Heady gets a clear, confident coffee personality; McDevitt gets a sibling that strengthens the family instead of diluting it. That felt-but-unspoken connection is exactly what a sister brand should do.</p>
+<ul>
+<li>Resemblance, not repetition: three inherited genes (green, outline, icon-in-a-block) carried the family; everything else was Heady's own.</li>
+<li>The quietest idea won. Steam beat the clever options because it says the most with the least, and keeps saying it at 16 pixels.</li>
+<li>Built to last: a single-color-friendly mark and a small kit of lockups that covers nearly anywhere the brand needs to show up.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="cta">
+<div class="wrap fade">
+<h2>Want the longer version?</h2>
+<p>Happy to walk through the explorations that didn’t make it.</p>
+<div class="row">
+<a class="btn" href="index.html#work">More work</a>
+<a class="btn alt" href="index.html#start">Get in touch</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="site">
+<div class="wrap">
+<span>© 2026 DANNY PAPAGEORGE</span>
+<span>PRODUCT DESIGN</span>
+</div>
+</footer>
+<script>
+  document.documentElement.classList.add('js');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{threshold:.08});
+  document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
